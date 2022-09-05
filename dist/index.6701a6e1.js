@@ -25516,7 +25516,7 @@ class MovieCard extends _reactDefault.default.Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"hD5IF","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iPZrd"}],"ikZdr":[function(require,module,exports) {
+},{"react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"hD5IF","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iPZrd","react/jsx-runtime":"8xIwr"}],"ikZdr":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$3741 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -25643,7 +25643,7 @@ class MovieView extends _reactDefault.default.Component {
                                 lineNumber: 29
                             },
                             __self: this,
-                            children: movie.Director
+                            children: movie.Director.Name
                         })
                     ]
                 }),
@@ -25671,7 +25671,7 @@ class MovieView extends _reactDefault.default.Component {
                                 lineNumber: 33
                             },
                             __self: this,
-                            children: movie.Genre
+                            children: movie.Genre.Name
                         })
                     ]
                 }),
