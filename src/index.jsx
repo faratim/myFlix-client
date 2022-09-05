@@ -4,6 +4,9 @@ import MainView from './components/main-view/main-view';
 import './index.scss';
 
 class MyFlixApplication extends React.Component {
+    constructor() {
+        super();
+    }
     render() {
         return (
             <MainView />
