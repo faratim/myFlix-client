@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 }
 MovieCard.propTypes = {
     movie: PropTypes.shape({
+      Poster: PropTypes.string.isRequired,
       Title: PropTypes.string.isRequired,
       Description: PropTypes.string.isRequired,
       ImagePath: PropTypes.string.isRequired,
