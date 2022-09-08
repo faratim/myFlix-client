@@ -947,27 +947,22 @@ var _reactDom = require("react-dom");
 var _reactDomDefault = parcelHelpers.interopDefault(_reactDom);
 var _mainView = require("./components/main-view/main-view");
 var _mainViewDefault = parcelHelpers.interopDefault(_mainView);
-//Importing statement to indicate that you need to bundle './index.scss'
 var _indexScss = require("./index.scss");
-//Main component(will eventually use all the others)
 class MovieApp extends _reactDefault.default.Component {
     render() {
         return(/*#__PURE__*/ _jsxRuntime.jsx(_mainViewDefault.default, {
             __source: {
                 fileName: "src/index.jsx",
-                lineNumber: 13
+                lineNumber: 10
             },
             __self: this
         }));
     }
     componentDidMount() {
-    // code executed right after the component is added to the DOM.
     }
     componentDidUpdate() {
-    // code executed right after component's state or props are changed.
     }
     componentWillUnmount() {
-    // code executed just before the moment the component gets removed from the DOM.
     }
 }
 //Finds the root of your app
@@ -25268,12 +25263,9 @@ var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _loginView = require("../login-view/login-view");
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
-//Exporting the MainView component makes it available for use by other components, modules, and files
 class MainView extends _reactDefault.default.Component {
     constructor(){
         super();
-        // code executed right when the component is created in the memory
-        // Initial state is set to null
         this.state = {
             movies: [],
             selectedMovie: null,
@@ -25281,7 +25273,6 @@ class MainView extends _reactDefault.default.Component {
         };
     }
     componentDidMount() {
-        // code executed right after the component is added to the DOM.
         _axiosDefault.default.get('https://faraflix.herokuapp.com/movies').then((response)=>{
             this.setState({
                 movies: response.data
@@ -25291,14 +25282,13 @@ class MainView extends _reactDefault.default.Component {
         });
     }
     componentWillUnmount() {
-    // code executed just before the moment the component gets removed from the DOM.
     }
-    /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/ setSelectedMovie(movie) {
+    /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` property to that movie*/ setSelectedMovie(movie) {
         this.setState({
             selectedMovie: movie
         });
     }
-    /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/ onLoggedIn(user) {
+    /* When a user successfully logs in, this function updates the `user` property in state to that particular user*/ onLoggedIn(user) {
         this.setState({
             user
         });
@@ -25310,7 +25300,7 @@ class MainView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 52
+                lineNumber: 47
             },
             __self: this
         }));
@@ -25318,18 +25308,16 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 53
+                lineNumber: 48
             },
             __self: this,
             children: "The list is empty"
         }));
-        //Displays movie list
-        //JSX
         return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 57
+                lineNumber: 51
             },
             __self: this,
             children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
@@ -25339,7 +25327,7 @@ class MainView extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 61
+                    lineNumber: 55
                 },
                 __self: this
             }) : movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
@@ -25349,7 +25337,7 @@ class MainView extends _reactDefault.default.Component {
                     },
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 63
+                        lineNumber: 57
                     },
                     __self: this
                 }, movie._id)
