@@ -21,6 +21,11 @@
   font-weight: 700;
 }
 
+.movie-image {
+  max-width: 70%;
+  margin: 0 auto;
+}
+
 
 
 body, html {
@@ -38,11 +43,17 @@ body, html {
   padding: 1.2rem;
 }
 
+.main-view {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .movieViewContainer {
   background: #fff;
 }
 
 .brand {
+  color: #fff;
   font-size: 3rem;
 }
 
@@ -55,9 +66,9 @@ body, html {
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;
   line-clamp: 2;
-  width: 19rem;
+  width: 21rem;
   -webkit-box-orient: vertical;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;
   display: -webkit-box;
   overflow: hidden;
 }
@@ -70,6 +81,41 @@ body, html {
   font-size: 1rem;
   display: -webkit-box;
   overflow: hidden;
+}
+
+.card-class, .movie-view {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.movie-image {
+  max-width: 70%;
+  text-align: center;
+  margin: 0 auto 2rem;
+}
+
+.movie-title, .movie-description, .movie-genre, .movie-director, .movie-actors {
+  text-align: left;
+  margin-bottom: .3rem;
+  padding-left: 3rem;
+  padding-right: 2.5rem;
+}
+
+.movie-actors {
+  margin-bottom: 1rem;
+}
+
+.card-btn {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.card-title, .card-text {
+  text-align: left;
 }
 
 /*# sourceMappingURL=index.27d8da6b.css.map */

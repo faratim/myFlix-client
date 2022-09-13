@@ -18,11 +18,8 @@ export class MovieCard extends React.Component {
         <Card.Img variant="top" src={movie.ImagePath} />
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>
-          {/* <a onClick={() => this.setState({ showText: !this.state.showText })}>See more</a> */}
-          {/* <Collapse in={this.state.showText}> */}
             <Card.Text>{movie.Description}</Card.Text>
-          {/* </Collapse> */}
-          <Button onClick={() => onMovieClick(movie)} variant="link">Open</Button>
+          <Button className="card-btn" onClick={() => onMovieClick(movie)} variant="link">Open</Button>
         </Card.Body>
       </Card>
     );

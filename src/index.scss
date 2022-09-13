@@ -17,12 +17,18 @@ body, html{
     padding: 1.2rem;
 }
 
+.main-view {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .movieViewContainer{
     background: $color3;
 }
 
 .brand {
   font-size: 3rem;
+  color: white;
 }
 
 .card-img-top {
@@ -31,15 +37,15 @@ body, html{
 }
 
 .card {
-  margin-bottom: 2rem;
-  overflow: hidden;
+  margin: 0 auto;
   overflow: hidden;
    text-overflow: ellipsis;
    display: -webkit-box;
    -webkit-line-clamp: 2; /* number of lines to show */
            line-clamp: 2; 
    -webkit-box-orient: vertical;
-width: 19rem;
+  width: 21rem;
+  margin-bottom: 2rem;
 }
 
 .card-text{
@@ -50,4 +56,51 @@ width: 19rem;
    -webkit-line-clamp: 4; /* number of lines to show */
            line-clamp: 4; 
    -webkit-box-orient: vertical;
+}
+
+.card-class {
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.movie-view {
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.movie-image {
+  max-width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.movie-title, .movie-description, .movie-genre, .movie-director, .movie-actors {
+  padding-left: 3rem;
+  padding-right: 2.5rem;
+  text-align: left;
+  margin-bottom: 0.3rem;
+}
+
+.movie-actors {
+  margin-bottom: 1rem;
+}
+
+.card-btn {
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.card-title {
+  text-align: left;
+}
+
+.card-text {
+  text-align: left;
 }
