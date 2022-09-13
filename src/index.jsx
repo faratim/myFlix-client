@@ -1,26 +1,17 @@
 import React from 'react';
-import ReactDOM  from 'react-dom';
+import ReactDOM from 'react-dom';
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
 
 import MainView from './components/main-view/main-view';
 import './index.scss';
 class MovieApp extends React.Component {
     render(){
       
-            return (
-                <MainView />
-                );
+      return (
+            <MainView />
+        );
     }
-    componentDidMount(){
-
-      }
-    
-      componentDidUpdate(){
-
-      }
-    
-      componentWillUnmount(){
-
-      }
 }
 
 //Finds the root of your app

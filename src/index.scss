@@ -1,5 +1,53 @@
-$color: steelblue;
+$color: #7FBCD2 ;
+$color2: #ae1d33 ;
+$color3: #ffffff ;
 
-.movie-app {
-  color: $color;
+body, html{
+  background: $color;
+  text-align: center;
+}
+
+.navbar-custom {
+  background-color: $color;
+  margin-bottom: 2rem;
+}
+
+.app-container {
+    background: $color3;
+    padding: 1.2rem;
+}
+
+.movieViewContainer{
+    background: $color3;
+}
+
+.brand {
+  font-size: 3rem;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 48vh;
+}
+
+.card {
+  margin-bottom: 2rem;
+  overflow: hidden;
+  overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2; /* number of lines to show */
+           line-clamp: 2; 
+   -webkit-box-orient: vertical;
+width: 19rem;
+}
+
+.card-text{
+  font-size: 1rem;
+  overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 4; /* number of lines to show */
+           line-clamp: 4; 
+   -webkit-box-orient: vertical;
 }

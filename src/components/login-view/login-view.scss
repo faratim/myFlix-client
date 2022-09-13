@@ -1,0 +1,25 @@
+$color: #123c69 ;
+$color2: #AC3B61 ;
+$color3: #ffffff ;
+
+.body {
+    background-color: $color3;
+}
+
+.login-form {
+    background-color: $color3;
+    margin: 1rem;
+    max-width: 12rem;
+}
+
+.form-control {
+    margin-bottom: 1.5rem;
+}
+
+.btn {
+    margin-bottom: 1.5rem;
+} 
+
+.form-label {
+    text-align: left;
+}

@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import PropTypes from "prop-types";
+import './registration-view.scss';
+
+
 export function Registration(props){
     const [username, setUsername] = useState('');
     const [ password, setPassword ] = useState('');
@@ -13,7 +16,7 @@ export function Registration(props){
          props.Registration(username);
       };
         return(
-            <form>
+            <form controlId="form-custom">
                 <h1>Registration Page</h1>
                 <label>
                     Username:

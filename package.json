@@ -18,12 +18,17 @@
   "homepage": "https://github.com/faratim/myFlix-client#readme",
   "dependencies": {
     "axios": "^0.27.2",
+    "bootstrap": "^5.2.1",
     "nvm": "^0.0.4",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.0.0-rc.0"
+    "@parcel/transformer-sass": "^2.0.0-rc.0",
+    "buffer": "^6.0.3",
+    "parcel": "^2.7.0",
+    "process": "^0.11.10"
   }
 }
