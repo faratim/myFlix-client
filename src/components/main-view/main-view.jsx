@@ -39,11 +39,30 @@ class MainView extends React.Component {
         });
     }
     /* When a user successfully logs in, this function updates the `user` property in state to that particular user*/
-    onLoggedIn(user) {
+    onLoggedIn(authData) {
+      console.log(authData);  
+      this.setState({
+          user: authData.user.Username
+      });
+        localStorage.setItem('token', authData.token);
+        localStorage.setItem('user', authData.user.Username);
+        this.getMovies(authData.token);
+    }
+  
+  getMovies(token) {
+    axios.get('https://faraflix.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
         this.setState({
-          user
+          movies: response.data
         });
-      }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+  
     render() {
         const { movies, selectedMovie, user} = this.state;
          /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
