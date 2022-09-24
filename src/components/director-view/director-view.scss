@@ -6,41 +6,16 @@ $middlebluegreen: rgb(129, 230, 217);
 $font-family_1: "Pathway Gothic One", sans-serif;
 $font-family_2: "League Gothic", sans-serif;
 
-.movie-view {
+.dir-view {
   background-color: $background-color;
 }
 
-img {
-  display: block;
-  max-width: 300px;
-  max-height: 1350px;
-  height: auto;
-  margin: 20px auto;
+.dir-view-header {
+  font-variant: small-caps;
+  font-size: 25px;
 }
 
-.director-link {
-  color: $tealblue;
-  text-decoration: none;
-}
-
-.director-link:hover,
-.director-link:focus {
-  text-decoration: none;
-  color: $russiangreen;
-}
-
-.genre-link {
-  color: $tealblue;
-  text-decoration: none;
-}
-
-.genre-link:hover,
-.genre-link:focus {
-  text-decoration: none;
-  color: $russiangreen;
-}
-
-.movie-view-button {
+.dir-view-button {
   border: none;
   display: inline-block;
   background-color: $tealblue;
@@ -55,13 +30,13 @@ img {
   width: 100%;
 }
 
-.movie-view-button:hover {
+.dir-view-button:hover {
   cursor: pointer;
   opacity: 0.5;
   background-color: $tealblue;
 }
 
-.movie-view-title {
+.dir-view-title {
   display: block;
   text-align: left;
   font-size: 35px;
@@ -73,18 +48,18 @@ img {
   padding: 10px;
 }
 
-.movie-view__grid {
+.dir-view__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.movie-info {
+.dir-info {
   display: grid;
   grid-template-rows: 50px 50px 4fr;
 }
 
 @media (max-width: 700px) {
-  .movie-view__grid {
+  .dir-view__grid {
     display: block;
   }
 }

@@ -1,51 +1,51 @@
-import React from 'react';
-import './movie-view.scss';
-export class MovieView extends React.Component{
-    keypressCallback(event){
-        console.log(event.key);
-    }
-    componentDidMount(){
-        document.addEventListener('keypress', this.keypressCallback);
-    }
-    //removes the event listener when the component is about to be unmounted
-    componentWillUnmount(){
-        document.removeEventListener('keypress',this.keypressCallback);
-    }
-    render(){
-        const {movie, onBackClick} = this.props;
-        return(
-            <div className="movie-view">
-                <div className="movie-poster">
-                    <img className="movie-image" src ={movie.ImagePath}/> 
-                </div>
-                
-                <div className="movie-details">
-                    <div className="movie-title">
-                        <span className="label">Title: </span>
-                        <span className="value">{movie.Title}</span>
-                    </div>
-                    <div className="movie-description">
-                        <span className="label">Description: </span>
-                        <span className="value">{movie.Description}</span>
-                    </div>
-                    <div className="movie-genre">
-                        <span className="label">Genre: </span>
-                        <span className="value">{movie.Genre.Name}</span>
-                    </div>
-                    <div className="movie-director">
-                        <span className="label">Director: </span>
-                        <span className="value">{movie.Director.Name}</span>
-                    </div>
-                    <div className="movie-actors">
-                        <span className="label">Actors: </span>
-                        <span className="value">{movie.Actors} </span>
+import React from "react";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
-                    </div>
-                </div>
-                
-                <button onClick={() => {onBackClick(null); }}>Back</button>
-            </div>
-        );
-    }
+import { Link } from "react-router-dom";
+
+import "./movie-view.scss";
+
+export class MovieView extends React.Component {
+  render() {
+    const { movie, onBackClick } = this.props;
+
+    return (
+      <Card className="movie-view">
+        <Card.Header>
+          <Card.Img variant="top" src={movie.ImagePath} />
+        </Card.Header>
+        <Card.Body className="movie-view-title">
+          <h1>{movie.Title}</h1>
+        </Card.Body>
+        <Card.Body>
+          <h4>Genre</h4>
+          <Link to={`/genres/${movie.Genre.Name}`}>
+            <h4 className="genre-link link">{movie.Genre.Name}</h4>
+          </Link>
+        </Card.Body>
+        <Card.Body>
+          <h4>Director</h4>
+          <Link to={`/directors/${movie.Director.Name}`}>
+            <h4 className="director-link link">{movie.Director.Name}</h4>
+          </Link>
+        </Card.Body>
+        <Card.Body>
+          <h4>Description:</h4>
+          {movie.Description}
+        </Card.Body>
+
+        <Card.Footer>
+          <Button
+            className="movie-view-button"
+            onClick={() => {
+              onBackClick();
+            }}
+          >
+            Back
+          </Button>
+        </Card.Footer>
+      </Card>
+    );
+  }
 }
-export default MovieView;
