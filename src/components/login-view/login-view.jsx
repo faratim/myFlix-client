@@ -16,11 +16,11 @@ import axios from "axios";
 export function LoginView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // Declare hook for each input
+
   const [usernameErr, setUsernameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
 
-  // validate user inputs
+// Validate User
   const validate = () => {
     let isReq = true;
     if (!username) {
@@ -45,7 +45,7 @@ export function LoginView(props) {
     e.preventDefault();
     const isReq = validate();
     if (isReq) {
-      /* Send a request to the server for authentication */
+    /* Send authentication request */
       axios
         .post("https://faraflix.herokuapp.com/login", {
           Username: username,
@@ -78,7 +78,7 @@ export function LoginView(props) {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                   />
-                  {/* code added here to display validation error */}
+                  {/* display validation error */}
                   {usernameErr && <p>{usernameErr}</p>}
                 </Form.Group>
 
@@ -90,7 +90,7 @@ export function LoginView(props) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  {/* code added here to display validation error */}
+                  {/* display validation error */}
                   {passwordErr && <p>{passwordErr}</p>}
                 </Form.Group>
                 <Button
@@ -115,8 +115,7 @@ export function LoginView(props) {
   );
 }
 
-// prop-types
-// Give informational warnings in browser if data does not match required shape
+
 LoginView.propTypes = {
   user: PropTypes.shape({
     username: PropTypes.string.isRequired,

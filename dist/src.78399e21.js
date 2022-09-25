@@ -56827,8 +56827,7 @@ function LoginView(props) {
   var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
       password = _useState4[0],
-      setPassword = _useState4[1]; // Declare hook for each input
-
+      setPassword = _useState4[1];
 
   var _useState5 = (0, _react.useState)(""),
       _useState6 = _slicedToArray(_useState5, 2),
@@ -56838,7 +56837,7 @@ function LoginView(props) {
   var _useState7 = (0, _react.useState)(""),
       _useState8 = _slicedToArray(_useState7, 2),
       passwordErr = _useState8[0],
-      setPasswordErr = _useState8[1]; // validate user inputs
+      setPasswordErr = _useState8[1]; // Validate User
 
 
   var validate = function validate() {
@@ -56868,7 +56867,7 @@ function LoginView(props) {
     var isReq = validate();
 
     if (isReq) {
-      /* Send a request to the server for authentication */
+      /* Send authentication request */
       _axios.default.post("https://faraflix.herokuapp.com/login", {
         Username: username,
         Password: password
@@ -56909,9 +56908,7 @@ function LoginView(props) {
   }, "Submit"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("p", null, "Need an account? ", /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/register"
   }, "Sign up")))))), /*#__PURE__*/_react.default.createElement(_Col.default, null)));
-} // prop-types
-// Give informational warnings in browser if data does not match required shape
-
+}
 
 LoginView.propTypes = {
   user: _propTypes.default.shape({
