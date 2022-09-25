@@ -8,19 +8,18 @@ $font-family_1: "Montserrat", sans-serif;
 $font-family_2: "Montserrat", sans-serif;
 
 .movie-card {
-  height: 680px;
+  height: 740px;
   border-radius: 5px;
   color: $text-color-dark;
   background-color: $tealblue;
-  margin: 10px;
-  padding: 10px;
+  margin-bottom: 20px;
+  // padding: 10px;
   text-align: center;
 }
 
 .card-img {
-  width: 100px;
-  height: 150px;
-  object-fit: cover;
+    height: 500px;
+    width: fit;
 }
 
 #movie-card {
@@ -37,8 +36,40 @@ $font-family_2: "Montserrat", sans-serif;
 .description {
   font-size: 0.9rem;
   overflow: hidden;
-  height: 143px;
+  height: 100px;
   line-height: 1.1;
+}
+
+@media (min-width: 1200px) {
+  .movie-card {
+    height: 735px;
+  }
+  .description {
+    height: 160px;
+  }
+  .card-img {
+    height: 370px;
+    width: fit;
+  }
+}
+
+@media (min-width: 786px) and (max-width: 991px) {
+  .movie-card {
+    height: 750px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .movie-card {
+    height: 700px;
+  }
+  .description {
+    height: 97px;
+  }
+  .card-img {
+    height: 390px;
+    width: fit;
+  }
 }
 
 .open {
@@ -53,7 +84,7 @@ $font-family_2: "Montserrat", sans-serif;
   padding: 10px;
   border-radius: 8px;
   transition: 0.2s opacity;
-  width: 100%;
+  width: 80%;
 }
 
 .open:hover,
@@ -64,10 +95,10 @@ $font-family_2: "Montserrat", sans-serif;
   color: $background-color;
 }
 
-@media all and (max-width: 775px) {
-  .movie-card {
-    height: auto;
-    display: block;
-    margin: 15px;
-  }
-}
+// @media all and (max-width: 775px) {
+//   .movie-card {
+//     height: auto;
+//     display: block;
+//     margin: 15px;
+//   }
+// }

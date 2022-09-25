@@ -56987,6 +56987,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/_react.default.createElement(_Card.default, {
         className: "movie-card"
       }, /*#__PURE__*/_react.default.createElement(_Card.default.Img, {
+        className: "card-img",
         variant: "top",
         src: movie.ImagePath
       }), /*#__PURE__*/_react.default.createElement(_Card.default.Body, null, /*#__PURE__*/_react.default.createElement(_Card.default.Title, null, movie.Title), /*#__PURE__*/_react.default.createElement(_Card.default.Text, {
@@ -57992,7 +57993,10 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
           return movies.map(function (m) {
             return /*#__PURE__*/_react.default.createElement(_Col.default, {
-              md: 3,
+              sm: 12,
+              md: 6,
+              lg: 4,
+              xl: 3,
               key: m._id
             }, /*#__PURE__*/_react.default.createElement(_movieCard.MovieCard, {
               movie: m
@@ -58216,7 +58220,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49838" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51019" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,23 +1,44 @@
+.navbar-logo {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.navbar-logo:hover,
+.navbar-logo:focus {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.nav-link {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.7rem;
+  text-decoration: underline;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
 .logout {
   border: none;
-  display: inline-block;
+  display: block;
   background-color: rgb(51, 109, 130);
   font-size: 14px;
   color: rgb(238, 240, 242);
-  font-family: "Pathway Gothic One", sans-serif;
+  font-family: "Montserrat", sans-serif;
   text-decoration: none;
   margin-top: 10px;
   padding: 10px;
   border-radius: 8px;
   transition: 0.2s opacity;
-  width: 100%;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .logout:hover,
 .logout:focus {
   cursor: pointer;
-  opacity: 0.5;
-  background-color: rgb(51, 109, 130);
+  opacity: 0.9;
+  background-color: rgb(253, 132, 31);
   color: rgb(25, 29, 50);
   text-decoration: none;
 }
@@ -57,19 +78,17 @@
   }
 }
 .movie-card {
-  height: 680px;
+  height: 740px;
   border-radius: 5px;
   color: rgb(232, 249, 253);
   background-color: rgb(0, 173, 181);
-  margin: 10px;
-  padding: 10px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
 .card-img {
-  width: 100px;
-  height: 150px;
-  object-fit: cover;
+  height: 500px;
+  width: fit;
 }
 
 #movie-card {
@@ -86,10 +105,39 @@
 .description {
   font-size: 0.9rem;
   overflow: hidden;
-  height: 143px;
+  height: 100px;
   line-height: 1.1;
 }
 
+@media (min-width: 1200px) {
+  .movie-card {
+    height: 735px;
+  }
+  .description {
+    height: 160px;
+  }
+  .card-img {
+    height: 370px;
+    width: fit;
+  }
+}
+@media (min-width: 786px) and (max-width: 991px) {
+  .movie-card {
+    height: 750px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .movie-card {
+    height: 700px;
+  }
+  .description {
+    height: 97px;
+  }
+  .card-img {
+    height: 390px;
+    width: fit;
+  }
+}
 .open {
   border: none;
   display: inline-block;
@@ -102,7 +150,7 @@
   padding: 10px;
   border-radius: 8px;
   transition: 0.2s opacity;
-  width: 100%;
+  width: 80%;
 }
 
 .open:hover,
@@ -111,14 +159,6 @@
   opacity: 0.9;
   background-color: rgb(253, 132, 31);
   color: rgb(25, 29, 50);
-}
-
-@media all and (max-width: 775px) {
-  .movie-card {
-    height: auto;
-    display: block;
-    margin: 15px;
-  }
 }
 .movie-view {
   background-color: rgb(25, 29, 50);

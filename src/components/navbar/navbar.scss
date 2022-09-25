@@ -3,12 +3,32 @@ $text-color: rgb(238, 240, 242);
 $tealblue: rgb(51, 109, 130);
 $russiangreen: rgb(115, 149, 111);
 $middlebluegreen: rgb(129, 230, 217);
-$font-family_1: "Pathway Gothic One", sans-serif;
+$font-family_1: "Montserrat", sans-serif;
 $font-family_2: "League Gothic", sans-serif;
+
+.navbar-logo{
+  font-family: $font-family_1;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.navbar-logo:hover,
+.navbar-logo:focus {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.nav-link {
+  font-family: $font-family_1;
+  font-size: 1.7rem;
+  text-decoration: underline;
+  text-align: center;
+  margin-bottom: 1rem;
+}
 
 .logout {
   border: none;
-  display: inline-block;
+  display: block;
   background-color: $tealblue;
   font-size: 14px;
   color: $text-color;
@@ -18,14 +38,15 @@ $font-family_2: "League Gothic", sans-serif;
   padding: 10px;
   border-radius: 8px;
   transition: 0.2s opacity;
-  width: 100%;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .logout:hover,
 .logout:focus {
   cursor: pointer;
-  opacity: 0.5;
-  background-color: $tealblue;
+  opacity: 0.9;
+  background-color: rgb(253, 132, 31);
   color: $background-color;
   text-decoration: none;
 }
