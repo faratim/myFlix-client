@@ -18,7 +18,6 @@ import { DirectorView } from "../director-view/director-view";
 import { Row, Col, Container } from "react-bootstrap";
 
 import "./main-view.scss";
-
 class MainView extends React.Component {
   constructor() {
     super();

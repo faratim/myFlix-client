@@ -59924,26 +59924,26 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return MovieCard;
-}(_react.default.Component);
+}(_react.default.Component); // MovieCard.propTypes = {
+//   movie: PropTypes.shape({
+//     Title: PropTypes.string.isRequired,
+//     Description: PropTypes.string.isRequired,
+//     ImagePath: PropTypes.string.isRequired,
+//     Genre: PropTypes.shape({
+//       Name: PropTypes.string.isRequired,
+//       Description: PropTypes.string.isRequired,
+//     }),
+//     Director: PropTypes.shape({
+//       Name: PropTypes.string.isRequired,
+//       Bio: PropTypes.string.isRequired,
+//       Birthday: PropTypes.string.isRequired,
+//     }),
+//   }).isRequired,
+//   onMovieClick: PropTypes.func.isRequired,
+// };
+
 
 exports.MovieCard = MovieCard;
-MovieCard.propTypes = {
-  movie: _propTypes.default.shape({
-    Title: _propTypes.default.string.isRequired,
-    Description: _propTypes.default.string.isRequired,
-    ImagePath: _propTypes.default.string.isRequired,
-    Genre: _propTypes.default.shape({
-      Name: _propTypes.default.string.isRequired,
-      Description: _propTypes.default.string.isRequired
-    }),
-    Director: _propTypes.default.shape({
-      Name: _propTypes.default.string.isRequired,
-      Bio: _propTypes.default.string.isRequired,
-      Birthday: _propTypes.default.string.isRequired
-    })
-  }).isRequired,
-  onMovieClick: _propTypes.default.func.isRequired
-};
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movies-list/movies-list.jsx":[function(require,module,exports) {
 "use strict";
 
@@ -60096,7 +60096,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
             })
           });
 
-          _axios.default.delete("https://movieapishelf.herokuapp.com/users/".concat(user, "/movies/").concat(movieId), {
+          _axios.default.delete("https://faraflix.herokuapp.com/users/".concat(user, "/movies/").concat(movieId), {
             headers: {
               Authorization: "Bearer ".concat(accessToken)
             }
@@ -60142,7 +60142,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 
       var username = localStorage.getItem("user");
 
-      _axios.default.get("https://movieapishelf.herokuapp.com/users/".concat(username), {
+      _axios.default.get("https://faraflix.herokuapp.com/users/".concat(username), {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
@@ -60167,7 +60167,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       var username = localStorage.getItem("user");
       var token = localStorage.getItem("token");
 
-      _axios.default.put("https://movieapishelf.herokuapp.com/users/".concat(username), {
+      _axios.default.put("https://faraflix.herokuapp.com/users/".concat(username), {
         Username: this.state.Username,
         Password: this.state.Password,
         Email: this.state.Email,
@@ -60200,7 +60200,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       var token = localStorage.getItem("token");
       var username = localStorage.getItem("user");
 
-      _axios.default.delete("https://movieapishelf.herokuapp.com/users/".concat(username), {
+      _axios.default.delete("https://faraflix.herokuapp.com/users/".concat(username), {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
@@ -60459,7 +60459,7 @@ function LoginView(props) {
 
     if (isReq) {
       /* Send a request to the server for authentication */
-      _axios.default.post("https://movieapishelf.herokuapp.com/login", {
+      _axios.default.post("https://faraflix.herokuapp.com/login", {
         Username: username,
         Password: password
       }).then(function (response) {
@@ -60662,25 +60662,25 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return MovieView;
-}(_react.default.Component);
+}(_react.default.Component); // MovieView.propTypes = {
+//   movie: PropTypes.shape({
+//     Title: PropTypes.string.isRequired,
+//     Description: PropTypes.string.isRequired,
+//     ImagePath: PropTypes.string.isRequired,
+//     Genre: PropTypes.shape({
+//       Name: PropTypes.string.isRequired,
+//       Description: PropTypes.string.isRequired,
+//     }),
+//     Director: PropTypes.shape({
+//       Name: PropTypes.string.isRequired,
+//       Bio: PropTypes.string.isRequired,
+//       Birthday: PropTypes.string.isRequired,
+//     }),
+//   }).isRequired,
+// };
+
 
 exports.MovieView = MovieView;
-MovieView.propTypes = {
-  movie: _propTypes.default.shape({
-    Title: _propTypes.default.string.isRequired,
-    Description: _propTypes.default.string.isRequired,
-    ImagePath: _propTypes.default.string.isRequired,
-    Genre: _propTypes.default.shape({
-      Name: _propTypes.default.string.isRequired,
-      Description: _propTypes.default.string.isRequired
-    }),
-    Director: _propTypes.default.shape({
-      Name: _propTypes.default.string.isRequired,
-      Bio: _propTypes.default.string.isRequired,
-      Birthday: _propTypes.default.string.isRequired
-    })
-  }).isRequired
-};
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./movie-view.scss":"components/movie-view/movie-view.scss"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -60803,7 +60803,7 @@ function RegistrationView(props) {
     var isReq = validate();
 
     if (isReq) {
-      _axios.default.post("https://movieapishelf.herokuapp.com/users", {
+      _axios.default.post("https://faraflix.herokuapp.com/users", {
         Username: username,
         Password: password,
         Email: email,
@@ -61014,15 +61014,15 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return GenreView;
-}(_react.default.Component);
+}(_react.default.Component); // GenreView.proptypes = {
+//   Genre: PropTypes.shape({
+//     Name: PropTypes.string.isRequired,
+//     Description: PropTypes.string.isRequired,
+//   }).isRequired,
+// };
+
 
 exports.GenreView = GenreView;
-GenreView.proptypes = {
-  Genre: _propTypes.default.shape({
-    Name: _propTypes.default.string.isRequired,
-    Description: _propTypes.default.string.isRequired
-  }).isRequired
-};
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","./genre-view.scss":"components/genre-view/genre-view.scss"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -61105,16 +61105,16 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return DirectorView;
-}(_react.default.Component);
+}(_react.default.Component); // DirectorView.proptypes = {
+//   Director: PropTypes.shape({
+//     Name: PropTypes.string.isRequired,
+//     Bio: PropTypes.string,
+//     Birthday: PropTypes.number,
+//   }).isRequired,
+// };
+
 
 exports.DirectorView = DirectorView;
-DirectorView.proptypes = {
-  Director: _propTypes.default.shape({
-    Name: _propTypes.default.string.isRequired,
-    Bio: _propTypes.default.string,
-    Birthday: _propTypes.default.number
-  }).isRequired
-};
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","./director-view.scss":"components/director-view/director-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -61221,7 +61221,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             favoriteMovies: [].concat(_toConsumableArray(favoriteMovies), [movieId])
           });
 
-          _axios.default.post("https://movieapishelf.herokuapp.com/users/".concat(user, "/movies/").concat(movieId), {}, {
+          _axios.default.post("https://faraflix.herokuapp.com/users/".concat(user, "/movies/").concat(movieId), {}, {
             headers: {
               Authorization: "Bearer ".concat(accessToken)
             }
@@ -61238,7 +61238,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             })
           });
 
-          _axios.default.delete("https://movieapishelf.herokuapp.com/users/".concat(user, "/movies/").concat(movieId), {
+          _axios.default.delete("https://faraflix.herokuapp.com/users/".concat(user, "/movies/").concat(movieId), {
             headers: {
               Authorization: "Bearer ".concat(accessToken)
             }
@@ -61275,7 +61275,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     value: function getMovies(token) {
       var _this2 = this;
 
-      _axios.default.get("https://movieapishelf.herokuapp.com/movies", {
+      _axios.default.get("https://faraflix.herokuapp.com/movies", {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
@@ -61560,7 +61560,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52250" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49221" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -61737,4 +61737,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../../../.nvm/versions/node/v16.16.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.jsx"], null)
-//# sourceMappingURL=/src.78399e21.js.map
+//# sourceMappingURL=/index.js.map
