@@ -1,41 +1,29 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
-import axios from 'axios';
 
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import { Link } from "react-router-dom";
-
+import { Form, Button } from "react-bootstrap";
+import axios from "axios";
 import "./registration-view.scss";
 
 export function RegistrationView(props) {
-  const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
   const [values, setValues] = useState({
-    nameErr: "",
-    username: "",
+    usernameErr: "",
     passwordErr: "",
     emailErr: "",
   });
 
   const validate = () => {
     let isReq = true;
-    if (name) {
-      setValues({ ...values, nameErr: "Name is required" });
-      isReq = false;
-    }
     if (!username) {
       setValues({ ...values, usernameErr: "Username Required" });
       isReq = false;
     } else if (username.length < 5) {
       setValues({
         ...values,
-        usernameErr: "Username must be atleast 5 characters long.",
+        usernameErr: "Username must be 5 characters long",
       });
       isReq = false;
     }
@@ -45,7 +33,7 @@ export function RegistrationView(props) {
     } else if (password.length < 6) {
       setValues({
         ...values,
-        passwordErr: "Password must be atleast 6 characters long",
+        passwordErr: "Password must be 6 characters long",
       });
       isReq = false;
     }
@@ -59,14 +47,12 @@ export function RegistrationView(props) {
     return isReq;
   };
 
-  // Modify state of MainView to be registered and logged in with new user
   const handleSubmit = (e) => {
     e.preventDefault();
     const isReq = validate();
     if (isReq) {
       axios
         .post("https://faraflix.herokuapp.com/users", {
-          Name: name,
           Username: username,
           Password: password,
           Email: email,
@@ -76,7 +62,7 @@ export function RegistrationView(props) {
           const data = response.data;
           console.log(data);
           alert("Registration successful, please login!");
-          window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
+          window.open("/", "_self");
         })
         .catch((response) => {
           console.error(response);
@@ -86,76 +72,54 @@ export function RegistrationView(props) {
   };
 
   return (
-    <Row className="mt-5">
-      <Col md={12}>
-        <Form>
-          <h3>Sign up</h3>
-          <p></p>
-          <Form.Group controlId="formUsername" className="reg-inputs">
-            <Form.Label>Username:</Form.Label>
-            <Form.Control
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            {values.usernameErr && <p>{values.usernameErr}</p>}
-          </Form.Group>
+    <Form>
+      <h2 className="mb-3 mx-auto mt-5">Registration</h2>
 
-          <Form.Group controlId="formPassword" className="reg-inputs">
-            <Form.Label>Password:</Form.Label>
-            <Form.Control
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {values.passwordErr && <p>{values.passwordErr}</p>}
-          </Form.Group>
+      <Form.Group className="mb-3 mx-auto mt-4" controlId="formUsername">
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+          placeholder="Username must be at least 5 characters long"
+        />
+      </Form.Group>
 
-          <Form.Group controlId="Email" className="reg-inputs">
-            <Form.Label>Email:</Form.Label>
-            <Form.Control
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            {values.emailErr && <p>{values.emailErr}</p>}
-          </Form.Group>
+      <Form.Group className="mb-3 mx-auto mt-4">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          minLength="8"
+          placeholder="Password must be at least 8 characters"
+        />
+      </Form.Group>
 
-          <Form.Group controlId="updateBirthday">
-            <Form.Label>Birthday:</Form.Label>
-            <Form.Control
-              type="date"
-              name="birthday"
-              onChange={(e) => setBirthday(e.target.value)}
-            />
-          </Form.Group>
+      <Form.Group className="mb-3 mx-auto mt-4">
+        <Form.Label>Email:</Form.Label>
+        <Form.Control
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email address"
+        />
+      </Form.Group>
 
-          <Button
-            className="register"
-            variant="primary"
-            type="submit"
-            onClick={handleSubmit}
-          >
-            Register
-          </Button>
-          <p></p>
-          <p>
-            Already registered? <Link to={"/"}>Sign in</Link>
-          </p>
-        </Form>
-      </Col>
-    </Row>
+      <Form.Group className="mb-3 mx-auto mt-4">
+        <Form.Label>Birthday:</Form.Label>
+        <Form.Control
+          type="date"
+          value={birthday}
+          onChange={(e) => setBirthday(e.target.value)}
+        />
+      </Form.Group>
+
+      <Button className="mt-4" type="submit" onClick={handleSubmit}>
+        Register
+      </Button>
+    </Form>
   );
 }
-
-// prop-types
-// Give informational warnings in browser if data does not match required shape
-RegistrationView.propTypes = {
-  register: PropTypes.shape({
-    Name: PropTypes.string.isRequired,
-    Username: PropTypes.string.isRequired,
-    Password: PropTypes.string.isRequired,
-    Email: PropTypes.string.isRequired,
-    Birthday: PropTypes.string.isRequired,
-  }),
-};

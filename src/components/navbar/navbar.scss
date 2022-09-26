@@ -1,52 +1,15 @@
-$background-color: rgb(25, 29, 50);
-$text-color: rgb(238, 240, 242);
-$tealblue: rgb(51, 109, 130);
-$russiangreen: rgb(115, 149, 111);
-$middlebluegreen: rgb(129, 230, 217);
-$font-family_1: "Montserrat", sans-serif;
-$font-family_2: "League Gothic", sans-serif;
-
-.navbar-logo{
-  font-family: $font-family_1;
-  font-size: 2rem;
-  font-weight: 900;
-}
-
-.navbar-logo:hover,
-.navbar-logo:focus {
-  cursor: pointer;
-  opacity: 0.8;
+.main-nav {
+  background-color: #1ba098;
+  padding: 0px;
+  margin-bottom: 60px;
 }
 
 .nav-link {
-  font-family: $font-family_1;
-  font-size: 1.7rem;
-  text-decoration: underline;
-  text-align: center;
-  margin-bottom: 1rem;
+  color: white;
 }
-
-.logout {
-  border: none;
-  display: block;
-  background-color: $tealblue;
-  font-size: 14px;
-  color: $text-color;
-  font-family: $font-family_1;
-  text-decoration: none;
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  transition: 0.2s opacity;
-  width: 50%;
-  margin: 0 auto;
+.text-light {
+  font-weight: bold;
 }
-
-.logout:hover,
-.logout:focus {
-  cursor: pointer;
-  opacity: 0.9;
-  background-color: rgb(253, 132, 31);
-  color: $background-color;
-  text-decoration: none;
+.ml-auto {
+  font-weight: bold;
 }
