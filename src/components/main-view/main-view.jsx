@@ -1,126 +1,153 @@
-import React from "react";
-import axios from "axios";
+// GLOBAL //
+import React from 'react';
+import axios from 'axios';
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import { setMovies, setFilter } from "../../actions/actions";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect
+} from 'react-router-dom';
 
-import MoviesList from "../movies-list/movies-list";
-import ProfileView from "../profile-view/profile-view";
-import LoginView from "../login-view/login-view";
-// import { MovieCard } from "../movie-card/movie-card";
-import { MovieView } from "../movie-view/movie-view";
-import { RegistrationView } from "../registration-view/registration-view";
-import { Menu } from "../navbar/navbar";
-import { GenreView } from "../genre-view/genre-view";
-import { DirectorView } from "../director-view/director-view";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container } from 'react-bootstrap';
 
-import "./main-view.scss";
+
+// LOCAL //
+
+// Redux Actions
+import {
+  setMovies,
+  setUser,
+  setAllUsers,
+  addFavorite,
+  deleteFavorite,
+} from '../../actions.actions';
+
+// Components - Admin
+import MoviesList from '../movies-list/movies-list';
+import { NavBar } from '../navbar/navbar';
+import { LoginView } from '../login-view/login-view';
+import { RegistrationView } from '../registration-view/registration-view';
+import ProfileView from '../profile-view/profile-view';
+
+// Components - Movies
+import { MovieView } from '../movie-view/movie-view';
+import { DirectorView } from '../director-view/director-view';
+import { GenreView } from '../genre-view/genre-view';
+
+// Components - Services
+import { UserService } from '../../services/user-services';
+import { MovieService } from '../../services/movie-services';
+
+import { setMovies, setFilter } from '../../actions/actions';
+
+// SCSS
+import './main-view.scss';
+
+
+// MAINVIEW
 class MainView extends React.Component {
   constructor() {
     super();
-    this.state = {
-      favoriteMovies: [],
-      user: null,
-    };
   }
+
   componentDidMount() {
     let accessToken = localStorage.getItem("token");
     if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem("user"),
-      });
       this.getMovies(accessToken);
+      this.getUser(accessToken);
     }
   }
 
+  // Get all movies if user has token🪙
   getMovies(token) {
-    axios
-      .get("https://faraflix.herokuapp.com/movies", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        this.props.setMovies(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    const movieService = new MovieService(token);
+    if (token !== null) {
+      movieService.getAllMovies(
+        {},
+        (response) => {
+          this.props.setMovies(response.data);
+        },
+        (error) => {
+          console.error(
+            'getAllMovies Err MovieService ' + error
+          );
+        }
+      );
+    }
   }
 
-  handleFavorite = (movieId, action) => {
-    const { user, favoriteMovies } = this.state;
-    const accessToken = localStorage.getItem("token");
-    if (accessToken !== null && user !== null) {
-      // Add MovieID to Favorites
-      if (action === "add") {
-        this.setState({ favoriteMovies: [...favoriteMovies, movieId] });
-        axios
-          .post(
-            `https://faraflix.herokuapp.com/users/${user}/movies/${movieId}`,
-            {},
-            {
-              headers: { Authorization: `Bearer ${accessToken}` },
-            }
-          )
-          .then((res) => {
-            console.log(`Movie added to ${user} favorite movies`);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+  // Upon successful login, 'user' property is updated to that user in state
+  onLoggedIn(authData) {
+    this.props.setUser(authData.user);
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    this.getMovies(authData.token);
+  }
 
-        // Remove MovieID from Favorites
-      } else if (action === "remove") {
-        this.setState({
-          favoriteMovies: favoriteMovies.filter((id) => id !== movieId),
-        });
-        axios
-          .delete(
-            `https://faraflix.herokuapp.com/users/${user}/movies/${movieId}`,
-            {
-              headers: { Authorization: `Bearer ${accessToken}` },
-            }
-          )
-          .then((res) => {
-            console.log(`Movie removed from ${user} favorite movies`);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+  getUser(token) {
+    const user = localStorage.getItem('user');
+    const userService = new UserService(token);
+    if (token !== null && user !== null) {
+      userService.getOneUser(
+        { user },
+        (response) => {
+          this.props.setUser(response.data);
+        },
+        (error) => {
+          console.error('getUser Err UserService ' + error);
+        }
+      );
+    }
+  }
+
+  // Add/Remove Favorite Movie
+  handleFav = (movieID, action) => {
+    const { user } = this.props;
+    const { Username } = user;
+    const token = localStorage.getItem('token');
+    const userService = new UserService(token);
+    if (token !== null && Username !== null) {
+      if (action === 'add') {
+        this.props.addFavorite(movieID);
+        userService.addFavoriteMovie(
+          { Username, movieID },
+          () =>
+            alert(
+              `Movie added to ${Username}'s favorite movies.`
+            ),
+          (error) =>
+            this.errorCallback(
+              error,
+              'addFav Error UserService '
+            )
+        );
+      } else if (action === 'remove') {
+        this.props.deleteFavorite(movieId);
+        userService.removeFavoriteMovie(
+          { Username, movieId },
+          (res) => {
+            alert(`Movie removed from your favorites list.`);
+            window.open(`/users/${Username}`, '_self');
+          },
+          (error) => {
+            console.error(
+              'removeFav Error UserService' + error
+            );
+          }
+        );
       }
     }
   };
-  /* When a user successfully logs in, this function updates the `user`
-  property in state to that *particular user*/
-  onLoggedIn(authData) {
-    console.log(authData);
-    this.setState({
-      user: authData.user.Username,
-    });
-
-    localStorage.setItem("token", authData.token);
-    localStorage.setItem("user", authData.user.Username);
-    this.getMovies(authData.token);
-  }
-  onLoggedOut() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    this.setState({
-      user: null,
-    });
-    window.open("/", "_self");
-  }
 
   render() {
-    let { movies } = this.props;
-    let { user } = this.state;
-    let { favoriteMovies } = this.state;
+    const { user, movies } = this.props
+    const { Username, FavoriteMovies } = user;
 
     return (
       <Router>
-        <Menu user={user} />
+        <NavBar user={user} />
         <Container fluid>
           <Row className="main-view-width mx-auto justify-content-md-center mt-3">
             <Route
