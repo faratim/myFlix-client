@@ -1,9 +1,11 @@
-import React from "react";
-import Col from "react-bootstrap/Col";
-import { connect } from "react-redux";
-import VisibilityFilterInput from "../visibility-filter-input/visibility-filter-input";
+// GLOBAL
+import React from 'react';
+import { Col, Row } from 'react-bootstrap';
+import { connect } from 'react-redux';
+
+// LOCAL
 import { MovieCard } from "../movie-card/movie-card";
-import PropTypes from "prop-types";
+import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
 
 const mapStateToProps = (state) => {
   const { visibilityFilter } = state;
@@ -14,9 +16,11 @@ function MoviesList(props) {
   const { movies, visibilityFilter } = props;
   let filteredMovies = movies;
 
-  if (visibilityFilter !== "") {
+  if (visibilityFilter !== '') {
     filteredMovies = movies.filter((m) =>
-      m.Title.toLowerCase().includes(visibilityFilter.toLowerCase())
+      m.Title.toLowerCase().includes(
+        visibilityFilter.toLowerCase()
+      )
     );
   }
 
@@ -24,25 +28,19 @@ function MoviesList(props) {
 
   return (
     <>
-      <Col lg={12} style={{ margin: "0.2em" }}>
-        <VisibilityFilterInput visibilityFilter={visibilityFilter} />
+      <Col md={12} className="align-left mb-3">
+        <VisibilityFilterInput
+          visibilityFilter={visibilityFilter}
+        />
       </Col>
-      {filteredMovies.map((m) => (
-        <Col lg={4} md={4} sm={12} key={m._id}>
-          <MovieCard movie={m} />
-        </Col>
-      ))}
+
+      <Row>
+        {filteredMovies.map((m) => (
+          <MovieCard key={m._id} movieData={m} />
+        ))}
+      </Row>
     </>
   );
 }
-
-MoviesList.propTypes = {
-  movies: PropTypes.arrayOf(
-    PropTypes.shape({
-      filter: PropTypes.func,
-    })
-  ),
-  visibilityFilter: PropTypes.string,
-};
 
 export default connect(mapStateToProps)(MoviesList);
