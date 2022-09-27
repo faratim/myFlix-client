@@ -40,7 +40,7 @@ import { GenreView } from '../genre-view/genre-view';
 import { UserService } from '../../services/user-services';
 import { MovieService } from '../../services/movie-services';
 
-import { setMovies, setFilter } from '../../actions/actions';
+// import { setMovies, setFilter } from '../../actions/actions';
 
 // SCSS
 import './main-view.scss';
@@ -147,20 +147,30 @@ class MainView extends React.Component {
 
     return (
       <Router>
-        <NavBar user={user} />
+        <NavBar fluid user={Username} />
         <Container fluid>
-          <Row className="main-view-width mx-auto justify-content-md-center mt-3">
+          <Row className="main-view-width mx-auto justify-content-md-center">
             <Route
               exact
               path="/"
               render={() => {
-                if (!user)
+                // If !user, render LoginView
+                if (!Username)
                   return (
                     <Col>
-                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                      <LoginView
+                        onLoggedIn={(Username) =>
+                          this.onLoggedIn(Username)
+                        }
+                      />
                     </Col>
                   );
-                if (movies.length === 0) return <div className="main-view" />;
+                if (movies.length === 0)
+                  return (
+                    <div className="main-view">
+                      Loading...
+                    </div>
+                  );
                 return <MoviesList movies={movies} />;
               }}
             />
@@ -168,27 +178,10 @@ class MainView extends React.Component {
             <Route
               path="/register"
               render={() => {
-                if (user) return <Redirect to="/" />;
-                return (
-                  <Col lg={8} md={8}>
-                    <RegistrationView />
-                  </Col>
-                );
-              }}
-            />
-
-            <Route
-              path={`/users/${user}`}
-              render={({ history }) => {
-                if (!user) return <Redirect to="/" />;
+                if (Username) return <Redirect to="/" />;
                 return (
                   <Col>
-                    <ProfileView
-                      movies={movies}
-                      onBackClick={history.goBack}
-                      favoriteMovies={favoriteMovies}
-                      handleFavorite={this.handleFavorite}
-                    />
+                    <RegistrationView />
                   </Col>
                 );
               }}
@@ -197,20 +190,24 @@ class MainView extends React.Component {
             <Route
               path="/movies/:movieId"
               render={({ match, history }) => {
-                if (!user)
+                if (!Username)
+                  return <Redirect to="/" />;
+                if (movies.length === 0)
                   return (
-                    <Col>
-                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
-                    </Col>
+                    <div className="main-view">
+                      Loading...
+                    </div>
                   );
-                if (movies.length === 0) return <div className="main-view" />;
-
                 return (
                   <MovieView
-                    movie={movies.find((m) => m._id === match.params.movieId)}
-                    isFavorite={favoriteMovies.includes(match.params.movieId)}
-                    onBackClick={history.goBack}
-                    handleFavorite={this.handleFavorite}
+                    handleFav={this.handleFav}
+                    isFavorite={FavoriteMovies.includes(
+                      match.params.movieId
+                    )}
+                    movieData={movies.find(
+                      (m) => m._id === match.params.movieId
+                    )}
+                    onBackClick={() => history.goBack()}
                   />
                 );
               }}
@@ -219,20 +216,56 @@ class MainView extends React.Component {
             <Route
               path="/directors/:name"
               render={({ match, history }) => {
-                if (!user)
+                if (!Username) return <Redirect to="/" />;
+                if (movies.length === 0)
                   return (
-                    <Col>
-                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
-                    </Col>
+                    <div className="main-view">
+                      Loading...
+                    </div>
                   );
-                if (movies.length === 0) return <div className="main-view" />;
                 return (
-                  <Col md={8}>
+                  <Col>
                     <DirectorView
                       director={
                         movies.find(
-                          (m) => m.Director.Name === match.params.name
+                          (m) =>
+                            m.Director.Name === match.params.name
                         ).Director
+                      }
+                      directorMovies={movies.filter(
+                        (m) =>
+                          m.Director.Name === match.params.name
+                      )}
+                      onBackClick={() => history.goBack()}
+                    />
+                  </Col>
+                );
+              }}
+            />
+
+<Route
+              path="/genres/:name"
+              render={({ match, history }) => {
+                if (!Username) return <Redirect to="/" />;
+                if (movies.length === 0)
+                  return (
+                    <div className="main-view">
+                      Loading...
+                    </div>
+                  );
+                return (
+                  <Col>
+                    <GenreView
+                      genreMovies={movies.filter(
+                        (m) =>
+                          m.Genre.Name === match.params.name
+                      )}
+                      genre={
+                        movies.find(
+                          (m) =>
+                            m.Genre.Name ===
+                            match.params.name
+                        ).Genre
                       }
                       onBackClick={() => history.goBack()}
                     />
@@ -242,35 +275,46 @@ class MainView extends React.Component {
             />
 
             <Route
-              path="/genres/:name"
-              render={({ match, history }) => {
-                if (!user)
+              path={`/users/${Username}`}
+              render={({ history }) => {
+                if (!Username) return <Redirect to="/" />;
+                if (movies.length === 0)
                   return (
-                    <Col>
-                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
-                    </Col>
+                    <div className="main-view">
+                      Loading...
+                    </div>
                   );
-                if (movies.length === 0) return <div className="main-view" />;
                 return (
-                  <Col md={8}>
-                    <GenreView
-                      genre={
-                        movies.find((m) => m.Genre.Name === match.params.name)
-                          .Genre
-                      }
+                    <ProfileView
+                      user={user}  
+                      movies={movies}
                       onBackClick={() => history.goBack()}
+                      handleFav={this.handleFav}
                     />
-                  </Col>
                 );
               }}
             />
+
           </Row>
         </Container>
       </Router>
     );
   }
 }
+
 let mapStateToProps = (state) => {
-  return { movies: state.movies };
+  return {
+    movies: state.movies,
+    user: state.user,
+    allUsers: state.allUsers,
+  };
 };
-export default connect(mapStateToProps, { setMovies, setFilter })(MainView);
+
+export default connect(mapStateToProps,
+  {
+    setMovies,
+    setUser,
+    setAllUsers,
+    addFavorite,
+    deleteFavorite,
+  })(MainView);
