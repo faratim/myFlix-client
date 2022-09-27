@@ -1,0 +1,459 @@
+.movie-card {
+  height: 740px;
+  border-radius: 5px;
+  color: rgb(232, 249, 253);
+  background-color: rgb(0, 173, 181);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.card-img {
+  height: 500px;
+  width: fit;
+}
+
+#movie-card {
+  margin: 10px;
+}
+
+.card-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  height: 3rem;
+}
+
+.description {
+  font-size: 0.9rem;
+  overflow: hidden;
+  height: 100px;
+  line-height: 1.1;
+}
+
+@media (min-width: 1200px) {
+  .movie-card {
+    height: 735px;
+  }
+  .description {
+    height: 160px;
+  }
+  .card-img {
+    height: 370px;
+    width: fit;
+  }
+}
+@media (min-width: 786px) and (max-width: 991px) {
+  .movie-card {
+    height: 750px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .movie-card {
+    height: 700px;
+  }
+  .description {
+    height: 97px;
+  }
+  .card-img {
+    height: 390px;
+    width: fit;
+  }
+}
+.open {
+  border: none;
+  display: inline-block;
+  background-color: rgb(57, 62, 70);
+  font-size: 14px;
+  color: rgb(238, 238, 238);
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.2s opacity;
+  width: 80%;
+}
+
+.open:hover,
+.open:focus {
+  cursor: pointer;
+  opacity: 0.9;
+  background-color: rgb(253, 132, 31);
+  color: rgb(25, 29, 50);
+}
+.row {
+  margin: 10px;
+}
+
+.user-profile {
+  background-color: rgb(238, 240, 242);
+  color: rgb(25, 29, 50);
+  padding-bottom: 10px;
+}
+
+.update-inputs {
+  background-color: rgb(238, 240, 242);
+  color: rgb(25, 29, 50);
+  padding-bottom: 10px;
+}
+
+.favmov-inputs {
+  background-color: rgb(238, 240, 242);
+  color: rgb(25, 29, 50);
+  width: 100%;
+}
+
+.figure {
+  text-align: center;
+}
+
+.user-favorites-header {
+  color: rgb(25, 29, 50);
+}
+
+.update-button,
+.delete-button {
+  border: none;
+  display: inline-block;
+  background-color: rgb(51, 109, 130);
+  font-size: 14px;
+  color: rgb(238, 240, 242);
+  font-family: "Pathway Gothic One", sans-serif;
+  text-decoration: none;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.2s opacity;
+  margin: 10px;
+}
+
+.remove {
+  border: none;
+  display: inline-block;
+  background-color: rgb(51, 109, 130);
+  font-size: 14px;
+  color: rgb(238, 240, 242);
+  font-family: "Pathway Gothic One", sans-serif;
+  text-decoration: none;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.2s opacity;
+}
+.container {
+  width: 100%;
+  padding: inherit;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login.card {
+  background-color: rgb(238, 240, 242);
+  color: rgb(25, 29, 50);
+  margin-top: 100px;
+  width: 500px;
+}
+
+.login-button {
+  border: none;
+  display: inline-block;
+  background-color: rgb(51, 109, 130);
+  font-size: 14px;
+  color: rgb(238, 240, 242);
+  font-family: "Pathway Gothic One", sans-serif;
+  text-decoration: none;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.2s opacity;
+}
+
+.login-button:hover,
+.login:focus {
+  cursor: pointer;
+  opacity: 0.5;
+  background-color: rgb(51, 109, 130);
+}
+
+@media all and (max-width: 775px) {
+  .login.card {
+    width: 300px;
+    display: inline-block;
+    margin: -10px;
+  }
+}
+.movie-view {
+  background-color: rgb(25, 29, 50);
+}
+
+img {
+  display: block;
+  max-width: 300px;
+  max-height: 1350px;
+  height: auto;
+  margin: 20px auto;
+}
+
+.director-link {
+  color: rgb(51, 109, 130);
+  text-decoration: none;
+}
+
+.director-link:hover,
+.director-link:focus {
+  text-decoration: none;
+  color: rgb(115, 149, 111);
+}
+
+.genre-link {
+  color: rgb(51, 109, 130);
+  text-decoration: none;
+}
+
+.genre-link:hover,
+.genre-link:focus {
+  text-decoration: none;
+  color: rgb(115, 149, 111);
+}
+
+.movie-view-button {
+  border: none;
+  display: inline-block;
+  background-color: rgb(51, 109, 130);
+  font-size: 14px;
+  color: rgb(238, 240, 242);
+  font-family: "Pathway Gothic One", sans-serif;
+  text-decoration: none;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.2s opacity;
+  width: 100%;
+}
+
+.movie-view-button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+  background-color: rgb(51, 109, 130);
+}
+
+.movie-view-title {
+  display: block;
+  text-align: left;
+  font-size: 35px;
+  font-weight: 400;
+  font-family: "League Gothic", sans-serif;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.movie-view__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.movie-info {
+  display: grid;
+  grid-template-rows: 50px 50px 4fr;
+}
+
+@media (max-width: 700px) {
+  .movie-view__grid {
+    display: block;
+  }
+}
+.register {
+  background-color: rgb(238, 240, 242);
+  color: rgb(25, 29, 50);
+  margin-top: 100px;
+}
+
+.register {
+  border: none;
+  display: inline-block;
+  background-color: rgb(51, 109, 130);
+  font-size: 14px;
+  color: rgb(238, 240, 242);
+  font-family: "Pathway Gothic One", sans-serif;
+  text-decoration: none;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.2s opacity;
+}
+
+.register:hover,
+.register:focus {
+  cursor: pointer;
+  opacity: 0.5;
+  background-color: rgb(51, 109, 130);
+}
+
+.reg-inputs {
+  padding-bottom: 10px;
+}
+
+.a {
+  color: rgb(51, 109, 130);
+  text-decoration: none;
+}
+
+.a:hover,
+.a:focus {
+  text-decoration: none;
+  color: rgb(115, 149, 111);
+}
+.main-nav {
+  background-color: #1ba098;
+  padding: 0px;
+  margin-bottom: 60px;
+}
+
+.nav-link {
+  color: white;
+}
+
+.text-light {
+  font-weight: bold;
+}
+
+.ml-auto {
+  font-weight: bold;
+}
+.genre-view {
+  background-color: rgb(25, 29, 50);
+}
+
+.genre-view-header {
+  font-variant: small-caps;
+  font-size: 25px;
+}
+
+.genre-view-button {
+  border: none;
+  display: inline-block;
+  background-color: rgb(51, 109, 130);
+  font-size: 14px;
+  color: rgb(238, 240, 242);
+  font-family: "Pathway Gothic One", sans-serif;
+  text-decoration: none;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.2s opacity;
+  width: 100%;
+}
+
+.genre-view-button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+  background-color: rgb(51, 109, 130);
+}
+
+.genre-view-title {
+  display: block;
+  text-align: left;
+  font-size: 35px;
+  font-weight: 400;
+  font-family: "League Gothic", sans-serif;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.genre-view__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.genre-info {
+  display: grid;
+  grid-template-rows: 50px 50px 4fr;
+}
+
+@media (max-width: 700px) {
+  .genre-view__grid {
+    display: block;
+  }
+}
+.dir-view {
+  background-color: rgb(25, 29, 50);
+}
+
+.dir-view-header {
+  font-variant: small-caps;
+  font-size: 25px;
+}
+
+.dir-view-button {
+  border: none;
+  display: inline-block;
+  background-color: rgb(51, 109, 130);
+  font-size: 14px;
+  color: rgb(238, 240, 242);
+  font-family: "Pathway Gothic One", sans-serif;
+  text-decoration: none;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.2s opacity;
+  width: 100%;
+}
+
+.dir-view-button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+  background-color: rgb(51, 109, 130);
+}
+
+.dir-view-title {
+  display: block;
+  text-align: left;
+  font-size: 35px;
+  font-weight: 400;
+  font-family: "League Gothic", sans-serif;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.dir-view__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.dir-info {
+  display: grid;
+  grid-template-rows: 50px 50px 4fr;
+}
+
+@media (max-width: 700px) {
+  .dir-view__grid {
+    display: block;
+  }
+}
+.logout {
+  margin-bottom: 2rem;
+}
+body {
+  font-family: "Pathway Gothic One", sans-serif;
+  background-color: rgb(25, 29, 50);
+  color: rgb(238, 240, 242);
+}
+
+h1 {
+  font-family: "League Gothic", sans-serif;
+}
+
+@media (max-width: 797px) {
+  body {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+/*# sourceMappingURL=/src.78399e21.css.map */

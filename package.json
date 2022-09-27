@@ -1,8 +1,8 @@
 {
   "name": "myflix-client",
   "version": "1.0.0",
-  "description": "## The client side of the myFlix app.",
-  "main": "src/index.js",
+  "description": "## Overview",
+  "main": "src/index.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,23 +18,21 @@
   "homepage": "https://github.com/faratim/myFlix-client#readme",
   "dependencies": {
     "axios": "^0.27.2",
-    "buffer": "^6.0.3",
     "chalk": "^5.0.1",
     "prop-types": "^15.8.1",
-    "react": "^17.0.2",
-    "react-bootstrap": "^2.4.0",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.5.0",
+    "react-dom": "^18.2.0",
     "react-redux": "^8.0.4",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^6.4.1",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9"
   },
   "devDependencies": {
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "cssnano": "^5.1.13",
+    "@parcel/transformer-sass": "^2.7.0",
+    "buffer": "^6.0.3",
     "parcel": "^2.7.0",
-    "postcss": "^8.4.16",
-    "sass": "^1.52.1"
+    "process": "^0.11.10",
+    "sass": "^1.55.0"
   }
 }
