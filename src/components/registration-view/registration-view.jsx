@@ -1,58 +1,95 @@
-import React, { useState } from "react";
-
-import { Form, Button } from "react-bootstrap";
-import axios from "axios";
-import "./registration-view.scss";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Form, Button, Col, Row } from 'react-bootstrap';
+import './registration-view.scss';
+import axios from 'axios';
 
 export function RegistrationView(props) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [birthday, setBirthdate] = useState('');
+  const [email, setEmail] = useState('');
+
+  // hooks for user inputs
   const [values, setValues] = useState({
-    usernameErr: "",
-    passwordErr: "",
-    emailErr: "",
+    usernameErr: '',
+    passwordErr: '',
+    birthdayErr: '',
+    emailErr: '',
   });
 
+  // user validation
   const validate = () => {
     let isReq = true;
+    setValues((prevValue) => {
+      return {
+        usernameErr: '',
+        passwordErr: '',
+        emailErr: '',
+        birthdayErr: '',
+      };
+    });
     if (!username) {
-      setValues({ ...values, usernameErr: "Username Required" });
+      setValues((prevValue) => {
+        return {
+          ...prevValue,
+          usernameErr: 'Username is required',
+        };
+      });
       isReq = false;
-    } else if (username.length < 5) {
-      setValues({
-        ...values,
-        usernameErr: "Username must be 5 characters long",
+    } else if (username.length < 2) {
+      setValues((prevValue) => {
+        return {
+          ...prevValue,
+          usernameErr:
+            'Username must be at least 2 characters long',
+        };
       });
       isReq = false;
     }
     if (!password) {
-      setValues({ ...values, passwordErr: "Password Required" });
+      setValues((prevValue) => {
+        return {
+          ...prevValue,
+          passwordErr: 'Password is required.',
+        };
+      });
       isReq = false;
     } else if (password.length < 6) {
-      setValues({
-        ...values,
-        passwordErr: "Password must be 6 characters long",
+      setValues((prevValue) => {
+        return {
+          ...prevValue,
+          passwordErr:
+            'Password must be at least 6 characters long',
+        };
       });
       isReq = false;
     }
     if (!email) {
-      setValues({ ...values, emailErr: "Email Required" });
+      setValues((prevValue) => {
+        return {
+          ...prevValue,
+          emailErr: 'Email is required.',
+        };
+      });
       isReq = false;
-    } else if (email.indexOf("@") === -1) {
-      setValues({ ...values, emailErr: "Email is invalid" });
+    } else if (email.indexOf('@') < 1) {
+      setValues((prevValue) => {
+        return {
+          ...prevValue,
+          emailErr: 'Email is invalid',
+        };
+      });
       isReq = false;
     }
     return isReq;
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const isReq = validate();
     if (isReq) {
       axios
-        .post("https://faraflix.herokuapp.com/users", {
+        .post('https://faraflix.herokuapp.com/users', {
           Username: username,
           Password: password,
           Email: email,
@@ -60,66 +97,116 @@ export function RegistrationView(props) {
         })
         .then((response) => {
           const data = response.data;
-          console.log(data);
-          alert("Registration successful, please login!");
-          window.open("/", "_self");
+          window.open('/', '_self'); //'_self' is necessary so that the page opens in the current tab
         })
         .catch((response) => {
           console.error(response);
-          alert("unable to register");
+          alert('User already exists - please login');
         });
     }
   };
 
   return (
-    <Form>
-      <h2 className="mb-3 mx-auto mt-5">Registration</h2>
-
-      <Form.Group className="mb-3 mx-auto mt-4" controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          placeholder="Username must be at least 5 characters long"
-        />
+    <Form className="justify-content-center">
+      <Form.Group as={Row} className="reg-form-inputs">
+        <Form.Label
+          column="true"
+          sm="12"
+          htmlFor="username">
+          Username*:
+        </Form.Label>
+        <Col sm="10" md="5">
+          <Form.Control
+            id="username"
+            type="text"
+            placeholder="Enter username"
+            value={username}
+            required
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          {values.usernameErr && (
+            <p className="validation-message">
+              {values.usernameErr}
+            </p>
+          )}
+        </Col>
       </Form.Group>
-
-      <Form.Group className="mb-3 mx-auto mt-4">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          minLength="8"
-          placeholder="Password must be at least 8 characters"
-        />
+      <Form.Group as={Row} className="reg-form-inputs">
+        <Form.Label
+          column="true"
+          sm="12"
+          htmlFor="password">
+          Password*:
+        </Form.Label>
+        <Col sm="10" md="5">
+          <Form.Control
+            id="password"
+            type="password"
+            value={password}
+            required
+            placeholder="Enter password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {values.passwordErr && (
+            <p className="validation-message">
+              {values.passwordErr}
+            </p>
+          )}
+        </Col>
       </Form.Group>
-
-      <Form.Group className="mb-3 mx-auto mt-4">
-        <Form.Label>Email:</Form.Label>
-        <Form.Control
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email address"
-        />
+      <Form.Group as={Row} className="reg-form-inputs">
+        <Form.Label column="true" sm="12" htmlFor="e-mail">
+          E-Mail*:
+        </Form.Label>
+        <Col sm="10" md="5">
+          <Form.Control
+            id="e-mail"
+            type="email"
+            value={email}
+            placeholder="Enter Email"
+            required
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {values.emailErr && (
+            <p className="validation-message">
+              {values.emailErr}{' '}
+            </p>
+          )}
+        </Col>
       </Form.Group>
-
-      <Form.Group className="mb-3 mx-auto mt-4">
-        <Form.Label>Birthday:</Form.Label>
-        <Form.Control
-          type="date"
-          value={birthday}
-          onChange={(e) => setBirthday(e.target.value)}
-        />
+      <Form.Group className="mb-3 reg-form-inputs" as={Row}>
+        <Form.Label
+          column="true"
+          sm="12"
+          htmlFor="birthday">
+          Birthday:
+        </Form.Label>
+        <Col sm="10" md="5">
+          <Form.Control
+            id="birthday"
+            type="date"
+            value={birthday}
+            onChange={(e) => setBirthdate(e.target.value)}
+          />
+        </Col>
       </Form.Group>
-
-      <Button className="mt-4" type="submit" onClick={handleSubmit}>
-        Register
+      <Button
+        type="button"
+        className="mr-3"
+        onClick={handleSubmit}>
+        Sign up
+      </Button>
+      <Button type="button" href="/">
+        Log In instead
       </Button>
     </Form>
   );
 }
+
+RegistrationView.propTypes = {
+  register: PropTypes.shape({
+    Username: PropTypes.string.isRequired,
+    Password: PropTypes.string.isRequired,
+    Email: PropTypes.string.isRequired,
+  }),
+};

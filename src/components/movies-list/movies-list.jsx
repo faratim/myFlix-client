@@ -1,10 +1,8 @@
-// GLOBAL
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-// LOCAL
-import { MovieCard } from "../movie-card/movie-card";
+import { MovieCard } from '../movie-card/movie-card';
 import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
 
 const mapStateToProps = (state) => {
@@ -14,6 +12,7 @@ const mapStateToProps = (state) => {
 
 function MoviesList(props) {
   const { movies, visibilityFilter } = props;
+  // For the case when visibility is an empty string
   let filteredMovies = movies;
 
   if (visibilityFilter !== '') {

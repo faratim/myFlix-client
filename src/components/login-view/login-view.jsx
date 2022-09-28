@@ -1,4 +1,3 @@
-// GLOBAL
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
@@ -11,10 +10,11 @@ export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  // Declare hook for each input
   const [usernameErr, setUsernameErr] = useState('');
   const [passwordErr, setPasswordErr] = useState('');
 
-  // Validate Inputs
+  // validate user inputs
   const validate = () => {
     let isReq = true;
     if (!username) {
@@ -43,14 +43,15 @@ export function LoginView(props) {
     const isReq = validate();
 
     if (isReq) {
-      /* Server Authentication */
+      /*Send a request to the server for authentication*/
+      /* then call props.onLoggedIn(username), which provides the username to our parent component (child to parent communication)*/
       axios
         .post('https://faraflix.herokuapp.com/login', {
           Username: username,
           Password: password,
         })
         .then((response) => {
-          // Server Response w/ Token
+          // response from the server incl. token
           const data = response.data;
           props.onLoggedIn(data);
         })
@@ -63,7 +64,6 @@ export function LoginView(props) {
 
   return (
     <Form>
-      
       <Form.Group as={Row}>
         <Form.Label column sm="12" htmlFor="username">
           Username:
@@ -79,7 +79,6 @@ export function LoginView(props) {
           {usernameErr && <p>{usernameErr}</p>}
         </Col>
       </Form.Group>
-      
       <Form.Group as={Row} className="mb-3">
         <Form.Label column sm="12" htmlFor="password">
           Password:
@@ -95,14 +94,12 @@ export function LoginView(props) {
           {passwordErr && <p>{passwordErr}</p>}
         </Col>
       </Form.Group>
-      
       <Button
         className="mr-3"
         type="submit"
         onClick={handleSubmit}>
         Submit
       </Button>
-    
     </Form>
   );
 }

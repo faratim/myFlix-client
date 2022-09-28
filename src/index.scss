@@ -1,24 +1,37 @@
-$background-color: rgb(25, 29, 50);
-$text-color: rgb(238, 240, 242);
-$tealblue: rgb(51, 109, 130);
-$russiangreen: rgb(115, 149, 111);
-$middlebluegreen: rgb(129, 230, 217);
-$font-family_1: "Pathway Gothic One", sans-serif;
-$font-family_2: "League Gothic", sans-serif;
+$color1: #150004;
+$color2: #31081f;
+$color3: #6b0f1a;
+
+html {
+  font-size: 1.3rem;
+}
 
 body {
-  font-family: $font-family_1;
-  background-color: $background-color;
-  color: $text-color;
+  background: $color1 !important;
+  color: white !important;
 }
 
-h1 {
-  font-family: $font-family_2;
+.btn-primary {
+  background: $color3 !important;
+  color: white !important;
+  border: 2px solid $color1 !important;
 }
 
-@media (max-width: 797px) {
-  body {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
+.btn-link {
+  color: white !important;
+}
+
+.bg-clr-footer {
+  background-color: $color3 !important;
+}
+
+.bg-clr-header {
+  background-color: $color1 !important;
+}
+
+.nav-bar {
+  color: white !important;
+}
+.cardText {
+  color: $color2 !important;
 }

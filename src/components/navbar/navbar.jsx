@@ -1,42 +1,46 @@
-import React from "react";
+import React from 'react';
+import { Container, Navbar, Nav } from 'react-bootstrap';
 
-import { Navbar, Nav, Button } from "react-bootstrap";
-
-import "./navbar.scss";
-
-export function Menu({ user }) {
+export function NavBar({ user }) {
   const onLoggedOut = () => {
     localStorage.clear();
-    window.open("/", "_self");
+    window.open('/', '_self');
   };
-
-  const isAuth = () => {
-    if (typeof window == "undefined") {
-      return false;
-    }
-    if (localStorage.getItem("token")) {
-      return localStorage.getItem("token");
-    } else {
-      return false;
-    }
+  const getToken = () => {
+    let userToken = localStorage.getItem('token');
+    return userToken ? userToken : false;
   };
-
   return (
-    <Navbar className="main-nav" expand="lg">
-      <Navbar.Brand className="text-light">MyFlixDB</Navbar.Brand>
+    <Navbar variant="dark">
+      <Navbar.Brand className="navbar-logo" href="/">
+        my Flix App
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto">
-          {isAuth() && <Nav.Link href="/">Home</Nav.Link>}
-          {isAuth() && <Nav.Link href={`/users/${user}`}>{user}</Nav.Link>}
-
-          {isAuth() && (
-            <Button variant="danger" onClick={onLoggedOut}>
-              Logout
-            </Button>
+        <Nav className="nav-bar">
+          {getToken() && (
+            <Nav.Link href="/">Movies</Nav.Link>
           )}
-          {!isAuth() && <Nav.Link href="/">Sign-in</Nav.Link>}
-          {!isAuth() && <Nav.Link href="/register">Sign-up</Nav.Link>}
+          {getToken() && (
+            <Nav.Link href={`/users/${user}`}>
+              {user}
+            </Nav.Link>
+          )}
+          {!getToken() && (
+            <Nav.Link href="/register">Sign up</Nav.Link>
+          )}
+          {!getToken() && (
+            <Nav.Link href="/">Login</Nav.Link>
+          )}
+          {getToken() && (
+            <Nav.Link
+              className="logout"
+              onClick={() => {
+                onLoggedOut();
+              }}>
+              Logout
+            </Nav.Link>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
