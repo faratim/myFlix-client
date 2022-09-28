@@ -1,5 +1,5 @@
 .validation-message {
-  color: red;
+  color: #00ADB5;
   font-size: 12px;
 }
 .button-fav {
@@ -15,14 +15,14 @@ html {
 }
 
 body {
-  background: #150004 !important;
+  background: #222831 !important;
   color: white !important;
 }
 
 .btn-primary {
-  background: #6b0f1a !important;
+  background: #00ADB5 !important;
   color: white !important;
-  border: 2px solid #150004 !important;
+  border: 2px solid #222831 !important;
 }
 
 .btn-link {
@@ -30,11 +30,11 @@ body {
 }
 
 .bg-clr-footer {
-  background-color: #6b0f1a !important;
+  background-color: #00ADB5 !important;
 }
 
 .bg-clr-header {
-  background-color: #150004 !important;
+  background-color: #222831 !important;
 }
 
 .nav-bar {
@@ -42,7 +42,7 @@ body {
 }
 
 .cardText {
-  color: #31081f !important;
+  color: #393E46 !important;
 }
 
 /*# sourceMappingURL=/src.78399e21.css.map */
