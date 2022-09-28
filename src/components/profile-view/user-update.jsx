@@ -1,3 +1,4 @@
+// GLOBAL
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import {
@@ -10,9 +11,10 @@ import {
 
 import { connect } from 'react-redux';
 
+// LOCAL
 import { setAllUsers } from '../../actions/actions';
-
 import { UserService } from '../../services/user-services';
+
 
 function UserUpdate({
   allUsers,
@@ -21,8 +23,7 @@ function UserUpdate({
   birthday,
   toggleUpdateInfo,
 }) {
-  // hooks for user inputs
-
+  //User Input Hooks
   const token = localStorage.getItem('token');
 
   const [formData, setFormData] = useState({
@@ -44,7 +45,7 @@ function UserUpdate({
   );
   const userId = userOne.map((x) => x._id);
 
-  // user validation
+  // User Validation
   const validate = () => {
     let isReq = true;
     setErrorMessage((prevValue) => {
@@ -75,12 +76,12 @@ function UserUpdate({
         };
       });
       isReq = false;
-    } else if (formData.Username.length < 2) {
+    } else if (formData.Username.length < 5) {
       setErrorMessage((prevValue) => {
         return {
           ...prevValue,
           usernameErr:
-            'Username must be at least 2 characters long',
+            'Username must be at least 5 characters long',
         };
       });
       isReq = false;
@@ -93,12 +94,12 @@ function UserUpdate({
         };
       });
       isReq = false;
-    } else if (formData.Password < 6) {
+    } else if (formData.Password < 5) {
       setErrorMessage((prevValue) => {
         return {
           ...prevValue,
           passwordErr:
-            'Password must be at least 6 characters long',
+            'Password must be at least 5 characters long',
         };
       });
       isReq = false;
@@ -115,7 +116,7 @@ function UserUpdate({
       setErrorMessage((prevValue) => {
         return {
           ...prevValue,
-          emailErr: 'Email is invalid',
+          emailErr: 'Email is invalid.',
         };
       });
       isReq = false;
@@ -171,7 +172,7 @@ function UserUpdate({
 
   return (
     <Container className="profile-view mb-4">
-      <h4>Update your profile</h4>
+      <h4>Update Your Profile</h4>
       <Form column="true" className="mb-3">
         <Form.Group
           className="mt-3"
@@ -205,7 +206,7 @@ function UserUpdate({
             <Form.Control
               name="Password"
               type="text"
-              placeholder="Please enter new password"
+              placeholder="Enter New Password"
               value={formData.Password}
               onChange={onChangeHandleUpdate}
             />{' '}
@@ -221,7 +222,7 @@ function UserUpdate({
           as={Row}
           controlId="formUsername">
           <Form.Label column="true" xs={3}>
-            E-Mail:
+            Email:
           </Form.Label>
           <Col>
             <Form.Control
@@ -259,7 +260,7 @@ function UserUpdate({
         className="mb-3 mr-3"
         type="button"
         onClick={(e) => handleSubmitUpdate(e)}>
-        <strong>Update </strong> my profile
+        <strong>Update </strong> My Profile
       </Button>
       <Button
         className="mb-3"

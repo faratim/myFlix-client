@@ -1,3 +1,4 @@
+// GLOBAL
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button, Row, Container } from 'react-bootstrap';
@@ -7,11 +8,13 @@ import UserUpdate from './user-update';
 
 import { connect } from 'react-redux';
 
+// LOCAL
 import {
   updateUser,
   deleteUser,
 } from '../../actions/actions';
 
+// VIEW
 export function ProfileView(props) {
   const {
     movies,
@@ -22,13 +25,14 @@ export function ProfileView(props) {
   } = props;
   const { Username, Birthday, FavoriteMovies } = user;
 
+  // Delete User
   const handleDelete = () => {
     if (Username && token) {
       let sure = confirm(
-        'Are you sure? This action is irreversible and will ERASE your account.'
+        'Are you sure? You will not be able to recover your account.'
       );
       if (!sure) return;
-      // request to Delete user from webserver
+      // Delete user from server
       axios
         .delete(
           `https://faraflix.herokuapp.com/users/${user._id}`,
@@ -52,6 +56,7 @@ export function ProfileView(props) {
 
   const token = localStorage.getItem('token');
 
+  // Data Formatting
   const formattedBday = new Date(Birthday);
   function padTo2Digits(num) {
     return num.toString().padStart(2, '0');
@@ -77,6 +82,7 @@ export function ProfileView(props) {
   const birthdayYYYYMMDD =
     formatDateYYYYMMDD(formattedBday);
 
+  // Update User
   const handleUpdateUser = (updatedUser, token) => {
     if (Username && updatedUser && token) {
       axios
@@ -132,7 +138,7 @@ export function ProfileView(props) {
           toggleUpdateInfo={toggleUpdateInfo}></UserUpdate>
       )}
 
-      <h4>My favorite movies:</h4>
+      <h4>My Favorite Movies:</h4>
       {FavoriteMovies.length !== 0 ? (
         <Row className="d-flex align-item-stretch mt-3">
           {FavoriteMovies.map((movieId) => {
@@ -153,10 +159,9 @@ export function ProfileView(props) {
         </Row>
       ) : (
         <h6 className="subtitle">
-          You don't have any movies in your favorite movies
-          list yet. Go to{' '}
+          You don't have any movies yet. Go to{' '}
           <Button href="/"> Movie List</Button> to add
-          movies to your favorite list
+          movies to your favorite list.
         </h6>
       )}
     </Container>

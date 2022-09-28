@@ -1,3 +1,4 @@
+// GLOBAL
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -6,9 +7,13 @@ import {
   CardGroup,
 } from 'react-bootstrap';
 
+// LOCAL
 import { Link } from 'react-router-dom';
+
+// SCSS
 import './movie-view.scss';
 
+// VIEW
 export function MovieView({
   movieData,
   onBackClick,
@@ -23,7 +28,7 @@ export function MovieView({
           <Card.Img
             variant="top"
             src={movieData.Imageurl}
-            alt="Poster from the movie"
+            alt="Moviei poster"
           />
         </Card.Body>
       </Card>
@@ -38,10 +43,10 @@ export function MovieView({
                 onClick={() =>
                   handleFav(movieData._id, 'add')
                 }>
-                🤍
+                ⭐️
               </Button>
             ) : (
-              <div className="fav">🤍</div>
+              <div className="fav">⭐️</div>
             )}
           </Card.Title>
 

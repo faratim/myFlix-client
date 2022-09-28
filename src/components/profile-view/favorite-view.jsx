@@ -1,3 +1,4 @@
+// GLOBAL
 import React from 'react';
 import {
   Col,
@@ -8,8 +9,10 @@ import {
   Button,
 } from 'react-bootstrap';
 
+// LOCAL
 import { Link } from 'react-router-dom';
 
+// VIEW
 export function FavoriteView({ movieData, handleFav }) {
   return (
     <Col

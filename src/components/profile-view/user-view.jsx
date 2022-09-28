@@ -36,7 +36,7 @@ export function UserView({
       </Row>
       <Row className="mb-3">
         <Col xs={12} sm={3}>
-          e-mail:
+          Email:
         </Col>
         <Col> {user.Email}</Col>
       </Row>
@@ -50,13 +50,13 @@ export function UserView({
         className="mb-3 mr-3"
         type="button"
         onClick={handleDelete}>
-        <strong> Delete </strong> my profile
+        <strong> Delete </strong> My Profile
       </Button>
       <Button
         className="mb-3"
         type="button"
         onClick={toggleUpdateInfo}>
-        <strong>Edit </strong> my profile
+        <strong>Edit </strong> My Profile
       </Button>
     </Container>
   );

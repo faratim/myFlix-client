@@ -1,3 +1,4 @@
+// GLOBAL
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -7,10 +8,13 @@ import {
   Col,
 } from 'react-bootstrap';
 
+// LOCAL
 import { Link } from 'react-router-dom';
 
+// SCSS
 import './movie-card.jsx';
 
+// VIEW
 export class MovieCard extends React.Component {
   render() {
     const { movieData } = this.props;

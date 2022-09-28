@@ -1,7 +1,7 @@
-// Utilities import
-
+// GLOBAL
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import { connect } from 'react-redux';
 
@@ -11,7 +11,7 @@ import {
   Route,
 } from 'react-router-dom';
 
-// Redux Action
+// REDUX ACTIONS
 import {
   setMovies,
   setUser,
@@ -20,7 +20,7 @@ import {
   deleteFavorite,
 } from '../../actions/actions';
 
-// Components imports
+// LOCAL
 import MoviesList from '../movies-list/movies-list';
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
@@ -33,8 +33,10 @@ import ProfileView from '../profile-view/profile-view';
 import { UserService } from '../../services/user-services';
 import { MovieService } from '../../services/movie-services';
 
+// REACT BOOTSTRAP
 import { Container, Row, Col } from 'react-bootstrap';
 
+// VIEW
 class MainView extends React.Component {
   constructor() {
     super();
@@ -65,7 +67,7 @@ class MainView extends React.Component {
     }
   }
 
-  /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
+  /* Update user property in state */
   onLoggedIn(authData) {
     this.props.setUser(authData.user);
     localStorage.setItem('token', authData.token);
@@ -89,7 +91,7 @@ class MainView extends React.Component {
     }
   }
 
-  // adding or removing a favorite movie
+  // Favorite Movie Handler
   handleFav = (movieId, action) => {
     const { user } = this.props;
     const { Username } = user;
@@ -103,7 +105,7 @@ class MainView extends React.Component {
           { Username, movieId },
           () =>
             alert(
-              `Movie added to ${Username} Favorite movies`
+              `Movie added to ${Username}'s Favorite movies!`
             ),
           (error) =>
             this.errorCallback(
@@ -117,7 +119,7 @@ class MainView extends React.Component {
         userService.removeFavoriteMovie(
           { Username, movieId },
           (res) => {
-            alert(`Movie removed from your favorites list`);
+            alert(`Movie removed from your favorites list.`);
             window.open(`/users/${Username}`, '_self');
           },
           (error) => {
@@ -135,14 +137,18 @@ class MainView extends React.Component {
     const { Username, FavoriteMovies } = user;
     return (
       <Router>
+        
         <NavBar fluid user={Username} />
+        
         <Container fluid>
           <Row className="main-view-width justify-content-md-center mx-auto">
+            
+            {/* Default Route */}
             <Route
               exact
               path="/"
               render={() => {
-                /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
+                /* If !user render LoginView. If user -> details are passed as prop */
                 if (!Username)
                   return (
                     <Col>
@@ -153,7 +159,7 @@ class MainView extends React.Component {
                       />
                     </Col>
                   );
-                // Before the movies have been loaded
+                // If no movies, display loading message
                 if (movies.length === 0)
                   return (
                     <div className="main-view">
@@ -164,6 +170,7 @@ class MainView extends React.Component {
               }}
             />
 
+            {/* Register Route */}
             <Route
               path="/register"
               render={() => {
@@ -175,6 +182,8 @@ class MainView extends React.Component {
                 );
               }}
             />
+            
+            {/* Specific Movie Route */}
             <Route
               path="/movies/:movieId"
               render={({ match, history }) => {
@@ -199,6 +208,8 @@ class MainView extends React.Component {
                 );
               }}
             />
+            
+            {/* Director Route */}
             <Route
               path="/directors/:name"
               render={({ match, history }) => {
@@ -230,6 +241,8 @@ class MainView extends React.Component {
                 );
               }}
             />
+            
+            {/* Genre Route */}
             <Route
               path="/genres/:name"
               render={({ match, history }) => {
@@ -260,6 +273,8 @@ class MainView extends React.Component {
                 );
               }}
             />
+            
+            {/* Users Route */}
             <Route
               path={`/users/${Username}`}
               render={({ history }) => {
@@ -280,6 +295,7 @@ class MainView extends React.Component {
                 );
               }}
             />
+            
           </Row>
         </Container>
       </Router>
