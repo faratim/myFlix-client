@@ -2,31 +2,33 @@
   color: red;
   font-size: 12px;
 }
+
 .button-fav {
-  background-color: #31081f !important;
   float: right !important;
+  background-color: #31081f !important;
 }
 
 .fav {
   float: right !important;
 }
+
 html {
   font-size: 1.3rem;
 }
 
 body {
+  color: #fff !important;
   background: #150004 !important;
-  color: white !important;
 }
 
 .btn-primary {
+  color: #fff !important;
   background: #6b0f1a !important;
-  color: white !important;
   border: 2px solid #150004 !important;
 }
 
 .btn-link {
-  color: white !important;
+  color: #fff !important;
 }
 
 .bg-clr-footer {
@@ -38,11 +40,11 @@ body {
 }
 
 .nav-bar {
-  color: white !important;
+  color: #fff !important;
 }
 
 .cardText {
   color: #31081f !important;
 }
 
-/*# sourceMappingURL=/src.78399e21.css.map */
+/*# sourceMappingURL=index.3bb28fe2.css.map */

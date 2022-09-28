@@ -1,16 +1,19 @@
+// GLOBAL
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button, Col, Row } from 'react-bootstrap';
-import './registration-view.scss';
 import axios from 'axios';
 
+// SCSS
+import './registration-view.scss';
+
+// VIEW
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [birthday, setBirthdate] = useState('');
   const [email, setEmail] = useState('');
 
-  // hooks for user inputs
   const [values, setValues] = useState({
     usernameErr: '',
     passwordErr: '',
@@ -18,7 +21,7 @@ export function RegistrationView(props) {
     emailErr: '',
   });
 
-  // user validation
+  // Validate User
   const validate = () => {
     let isReq = true;
     setValues((prevValue) => {
@@ -33,16 +36,16 @@ export function RegistrationView(props) {
       setValues((prevValue) => {
         return {
           ...prevValue,
-          usernameErr: 'Username is required',
+          usernameErr: 'Username is Required',
         };
       });
       isReq = false;
-    } else if (username.length < 2) {
+    } else if (username.length < 5) {
       setValues((prevValue) => {
         return {
           ...prevValue,
           usernameErr:
-            'Username must be at least 2 characters long',
+            'Username must be at least 5 characters long!',
         };
       });
       isReq = false;
@@ -51,16 +54,16 @@ export function RegistrationView(props) {
       setValues((prevValue) => {
         return {
           ...prevValue,
-          passwordErr: 'Password is required.',
+          passwordErr: 'Password is required!',
         };
       });
       isReq = false;
-    } else if (password.length < 6) {
+    } else if (password.length < 5) {
       setValues((prevValue) => {
         return {
           ...prevValue,
           passwordErr:
-            'Password must be at least 6 characters long',
+            'Password must be at least 5 characters long!',
         };
       });
       isReq = false;
@@ -69,7 +72,7 @@ export function RegistrationView(props) {
       setValues((prevValue) => {
         return {
           ...prevValue,
-          emailErr: 'Email is required.',
+          emailErr: 'Email is required!',
         };
       });
       isReq = false;
@@ -77,7 +80,7 @@ export function RegistrationView(props) {
       setValues((prevValue) => {
         return {
           ...prevValue,
-          emailErr: 'Email is invalid',
+          emailErr: 'Please enter a valid email address!',
         };
       });
       isReq = false;
@@ -97,17 +100,19 @@ export function RegistrationView(props) {
         })
         .then((response) => {
           const data = response.data;
-          window.open('/', '_self'); //'_self' is necessary so that the page opens in the current tab
+          window.open('/', '_self');
         })
         .catch((response) => {
           console.error(response);
-          alert('User already exists - please login');
+          alert('User already exists. Please login instead!');
         });
     }
   };
 
   return (
     <Form className="justify-content-center">
+      
+      {/* Username */}
       <Form.Group as={Row} className="reg-form-inputs">
         <Form.Label
           column="true"
@@ -119,7 +124,7 @@ export function RegistrationView(props) {
           <Form.Control
             id="username"
             type="text"
-            placeholder="Enter username"
+            placeholder="Username"
             value={username}
             required
             onChange={(e) => setUsername(e.target.value)}
@@ -131,6 +136,8 @@ export function RegistrationView(props) {
           )}
         </Col>
       </Form.Group>
+      
+      {/* Password */}
       <Form.Group as={Row} className="reg-form-inputs">
         <Form.Label
           column="true"
@@ -144,7 +151,7 @@ export function RegistrationView(props) {
             type="password"
             value={password}
             required
-            placeholder="Enter password"
+            placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
           {values.passwordErr && (
@@ -154,6 +161,8 @@ export function RegistrationView(props) {
           )}
         </Col>
       </Form.Group>
+      
+      {/* Email */}
       <Form.Group as={Row} className="reg-form-inputs">
         <Form.Label column="true" sm="12" htmlFor="e-mail">
           E-Mail*:
@@ -163,7 +172,7 @@ export function RegistrationView(props) {
             id="e-mail"
             type="email"
             value={email}
-            placeholder="Enter Email"
+            placeholder="Email"
             required
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -174,6 +183,8 @@ export function RegistrationView(props) {
           )}
         </Col>
       </Form.Group>
+      
+      {/* Birthday */}
       <Form.Group className="mb-3 reg-form-inputs" as={Row}>
         <Form.Label
           column="true"
@@ -190,14 +201,18 @@ export function RegistrationView(props) {
           />
         </Col>
       </Form.Group>
+      
+      {/* Submit Button */}
       <Button
         type="button"
         className="mr-3"
         onClick={handleSubmit}>
-        Sign up
+        Sign Up
       </Button>
+      
+      {/* Log In Button */}
       <Button type="button" href="/">
-        Log In instead
+        Log In
       </Button>
     </Form>
   );

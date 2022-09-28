@@ -1,0 +1,46 @@
+body {
+  color: #fff !important;
+  background: #150004 !important;
+}
+
+.btn-primary {
+  color: #fff !important;
+  background: #6b0f1a !important;
+  border: 2px solid #150004 !important;
+}
+
+.btn-link {
+  color: #fff !important;
+}
+
+.bg-clr-footer {
+  background-color: #6b0f1a !important;
+}
+
+.bg-clr-header {
+  background-color: #150004 !important;
+}
+
+.nav-bar {
+  color: #fff !important;
+}
+
+.cardText {
+  color: #31081f !important;
+}
+
+.button-fav {
+  background: #31081f !important;
+}
+
+.button-fav {
+  float: right !important;
+  background-color: #31081f !important;
+}
+
+.validation-message {
+  color: red;
+  font-size: 12px;
+}
+
+/*# sourceMappingURL=index.ce1d6491.css.map */

@@ -1,3 +1,4 @@
+// GLOBAL
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
@@ -6,32 +7,32 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import axios from 'axios';
 
+// VIEW
 export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  // Declare hook for each input
   const [usernameErr, setUsernameErr] = useState('');
   const [passwordErr, setPasswordErr] = useState('');
 
-  // validate user inputs
+  // Validate Inputs
   const validate = () => {
     let isReq = true;
     if (!username) {
-      setUsernameErr('Username is required');
+      setUsernameErr('Username Required');
       isReq = false;
-    } else if (username.length < 2) {
+    } else if (username.length < 5) {
       setUsernameErr(
-        'Username must be at least 2 characters long'
+        'Username must be at least 5 characters!'
       );
       isReq = false;
     }
     if (!password) {
-      setPasswordErr('Password is required');
+      setPasswordErr('Password is required!');
       isReq = false;
-    } else if (password.length < 6) {
+    } else if (password.length < 5) {
       setPasswordErr(
-        'Password must be at least 6 characters long'
+        'Password must be at least 5 characters long!'
       );
       isReq = false;
     }
@@ -43,27 +44,29 @@ export function LoginView(props) {
     const isReq = validate();
 
     if (isReq) {
-      /*Send a request to the server for authentication*/
-      /* then call props.onLoggedIn(username), which provides the username to our parent component (child to parent communication)*/
+      /*Server Authentication*/
+
       axios
         .post('https://faraflix.herokuapp.com/login', {
           Username: username,
           Password: password,
         })
         .then((response) => {
-          // response from the server incl. token
+          // Server Response + Token🪙
           const data = response.data;
           props.onLoggedIn(data);
         })
         .catch((e) => {
-          console.error('no such user');
-          alert('username and/or password are wrong');
+          console.error('User Does Not Exist');
+          alert('Incorrect Username/Password');
         });
     }
   };
 
   return (
     <Form>
+      
+      {/* Username */}
       <Form.Group as={Row}>
         <Form.Label column sm="12" htmlFor="username">
           Username:
@@ -72,13 +75,15 @@ export function LoginView(props) {
           <Form.Control
             id="username"
             type="text"
-            placeholder="Enter username"
+            placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           {usernameErr && <p>{usernameErr}</p>}
         </Col>
       </Form.Group>
+      
+      {/* Password */}
       <Form.Group as={Row} className="mb-3">
         <Form.Label column sm="12" htmlFor="password">
           Password:
@@ -94,6 +99,8 @@ export function LoginView(props) {
           {passwordErr && <p>{passwordErr}</p>}
         </Col>
       </Form.Group>
+      
+      {/* Submit Button */}
       <Button
         className="mr-3"
         type="submit"

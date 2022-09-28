@@ -9,7 +9,6 @@ import {
   BrowserRouter as Router,
   Redirect,
   Route,
-  Routes
 } from 'react-router-dom';
 
 // Redux Action
@@ -139,7 +138,6 @@ class MainView extends React.Component {
         <NavBar fluid user={Username} />
         <Container fluid>
           <Row className="main-view-width justify-content-md-center mx-auto">
-            <Routes>
             <Route
               exact
               path="/"
@@ -177,7 +175,6 @@ class MainView extends React.Component {
                 );
               }}
             />
-
             <Route
               path="/movies/:movieId"
               render={({ match, history }) => {
@@ -202,7 +199,6 @@ class MainView extends React.Component {
                 );
               }}
             />
-
             <Route
               path="/directors/:name"
               render={({ match, history }) => {
@@ -234,7 +230,6 @@ class MainView extends React.Component {
                 );
               }}
             />
-
             <Route
               path="/genres/:name"
               render={({ match, history }) => {
@@ -265,7 +260,6 @@ class MainView extends React.Component {
                 );
               }}
             />
-            
             <Route
               path={`/users/${Username}`}
               render={({ history }) => {
@@ -286,8 +280,6 @@ class MainView extends React.Component {
                 );
               }}
             />
-            </Routes>
-            
           </Row>
         </Container>
       </Router>
