@@ -1,45 +1,36 @@
+// GLOBAL
 import React from "react";
-import PropTypes from "prop-types";
-import Button from "react-bootstrap/Button";
+import { Row, Col, Container, Button } from 'react-bootstrap';
 
-// Import React Bootstrap Components
-import Container from "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
+// LOCAL
+import { MovieCard } from '../movie-card/movie-card';
 
-// Import custom SCSS
+// SCSS
 import "./director-view.scss";
 
-export class DirectorView extends React.Component {
-  render() {
-    const { director, onBackClick } = this.props;
-
-    return (
-      <Container>
-        <Card className="dir-view">
-          <Card.Header className="dir-view-header">Director</Card.Header>
-          <Card.Body className="dir-view-title">{director.Name}</Card.Body>
-          <Card.Body>Birthday: {director.Birthday}</Card.Body>
-          <Card.Body>{director.Bio}</Card.Body>
-          <Card.Footer>
-            <Button
-              className="dir-view-button"
-              onClick={() => {
-                onBackClick();
-              }}
-            >
-              Back
-            </Button>
-          </Card.Footer>
-        </Card>
-      </Container>
-    );
-  }
+// VIEW
+export function DirectorView({ onBackClick, director, directorMovies }) {
+  return (
+    <Container className="mt-5">
+      <h1> {director.Name} </h1>
+      <p> Born in: {director.Birthyear} </p>
+      <h5> Biography </h5>
+      <p> {director.Bio} </p>
+      <Button
+        className="mb-3"
+        type="button"
+        onClick={() => {
+        onBackClick();
+      }}>
+      Back
+      </Button>
+    <br />
+    <h5>Other Movies From This Director</h5>
+    <Row className="justify-content mt-3 director-cardView">
+        {directorMovies.map((movie) => {
+          <MovieCard key={movie.id} movieData={movie}></MovieCard>
+        })}
+    </Row>
+    </Container>
+  );
 }
-
-// DirectorView.proptypes = {
-//   Director: PropTypes.shape({
-//     Name: PropTypes.string.isRequired,
-//     Bio: PropTypes.string,
-//     Birthday: PropTypes.number,
-//   }).isRequired,
-// };

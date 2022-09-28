@@ -1,32 +1,38 @@
-import React, { useState } from "react";
-import axios from "axios";
-
-import { Form, Button } from "react-bootstrap";
-import { connect } from "react-redux";
-import "./login-view.scss";
+// GLOBAL
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import axios from 'axios';
 
 export function LoginView(props) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  // Declare hook for each input
-  const [setUsernameErr] = useState("");
-  const [setPasswordErr] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  // // validate user inputs
+  const [usernameErr, setUsernameErr] = useState('');
+  const [passwordErr, setPasswordErr] = useState('');
+
+  // Validate Inputs
   const validate = () => {
     let isReq = true;
     if (!username) {
-      setUsernameErr("Username Required");
+      setUsernameErr('Username is required');
       isReq = false;
-    } else if (username.length < 5) {
-      setUsernameErr("Username must be at least 5 characters long");
+    } else if (username.length < 2) {
+      setUsernameErr(
+        'Username must be at least 2 characters long'
+      );
       isReq = false;
     }
     if (!password) {
-      setPasswordErr("Password Required");
+      setPasswordErr('Password is required');
       isReq = false;
     } else if (password.length < 6) {
-      setPasswordErr("Password must be at least 6 characters long");
+      setPasswordErr(
+        'Password must be at least 6 characters long'
+      );
       isReq = false;
     }
     return isReq;
@@ -35,66 +41,72 @@ export function LoginView(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const isReq = validate();
+
     if (isReq) {
-      /* Send a request to the server for authentication */
+      /* Server Authentication */
       axios
-        .post("https://faraflix.herokuapp.com/login", {
+        .post('https://faraflix.herokuapp.com/login', {
           Username: username,
           Password: password,
         })
         .then((response) => {
+          // Server Response w/ Token
           const data = response.data;
           props.onLoggedIn(data);
         })
         .catch((e) => {
-          console.log("no such user");
+          console.error('no such user');
+          alert('username and/or password are wrong');
         });
     }
   };
 
   return (
     <Form>
-      <h2 className="mb-3 mx-auto mt-5">Login to MyFlixDB</h2>
-      <Form.Group className="mb-3 mx-auto mt-4" controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          placeholder="Enter a username"
-        />
+      
+      <Form.Group as={Row}>
+        <Form.Label column sm="12" htmlFor="username">
+          Username:
+        </Form.Label>
+        <Col sm="10" md={6}>
+          <Form.Control
+            id="username"
+            type="text"
+            placeholder="Enter username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          {usernameErr && <p>{usernameErr}</p>}
+        </Col>
       </Form.Group>
-
-      <Form.Group className="mb-3 mx-auto mt-4">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          minLength="8"
-          placeholder="Enter a password"
-        />
+      
+      <Form.Group as={Row} className="mb-3">
+        <Form.Label column sm="12" htmlFor="password">
+          Password:
+        </Form.Label>{' '}
+        <Col sm="10" md={6}>
+          <Form.Control
+            id="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {passwordErr && <p>{passwordErr}</p>}
+        </Col>
       </Form.Group>
-
-      <Button className="mt-4" type="submit" onClick={handleSubmit}>
+      
+      <Button
+        className="mr-3"
+        type="submit"
+        onClick={handleSubmit}>
         Submit
       </Button>
+    
     </Form>
   );
 }
 
-// LoginView.PropTypes = {
-//   user: PropTypes.shape({
-//     username: PropTypes.string.isRequired,
-//     password: PropTypes.string.isRequired,
-//   }),
-//   onLoggedIn: PropTypes.func.isRequired,
-// };
-const mapDispatchToProps = (dispatch) => ({
-  handleSubmit: (username, password) =>
-    dispatch(handleSubmit(username, password)),
-});
-
-export default connect(null, mapDispatchToProps)(LoginView);
+LoginView.propTypes = {
+  onLoggedIn: PropTypes.func.isRequired,
+};

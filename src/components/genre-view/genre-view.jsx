@@ -1,43 +1,35 @@
+// GLOBAL
 import React from "react";
-import PropTypes from "prop-types";
+import { Container, Button, Row } from 'react-bootstrap';
 
-// Import React Bootstrap Components
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
+// LOCAL
+import { MovieCard } from '../movie-card/movie-card';
 
-// Import custom SCSS
+// SCSS
 import "./genre-view.scss";
 
-export class GenreView extends React.Component {
-  render() {
-    const { genre, onBackClick } = this.props;
-
-    return (
-      <Container>
-        <Card className="genre-view">
-          <Card.Header className="genre-view-header">Genre</Card.Header>
-          <Card.Body className="genre-view-title">{genre.Name}</Card.Body>
-          <Card.Body>{genre.Description}</Card.Body>
-          <Card.Footer>
-            <Button
-              className="genre-view-button"
-              onClick={() => {
-                onBackClick();
-              }}
-            >
-              Back
-            </Button>
-          </Card.Footer>
-        </Card>
-      </Container>
-    );
-  }
+// VIEW
+export function GenreView({ genre, onBackClick, genreMovies }) {
+  return (
+    <Container>
+      <h1>{genre.Name}</h1>
+      <p></p>
+      <h5>Description</h5>
+      <p>{genre.Description}</p>
+      <Button
+        className="mb-3"
+        type="button"
+        onClick={() => {
+          onBackClick();
+        }}>
+        Back
+      </Button>
+      <h5>Other {genre.Name} Movies</h5>
+      <Row className="justify-content mt-3 director-cardView">
+        {genreMovies.map((movie) => (
+          <MovieCard key={movie._id} movieData={movie}></MovieCard>
+        ))}
+      </Row>
+    </Container>
+  );
 }
-
-// GenreView.proptypes = {
-//   Genre: PropTypes.shape({
-//     Name: PropTypes.string.isRequired,
-//     Description: PropTypes.string.isRequired,
-//   }).isRequired,
-// };
