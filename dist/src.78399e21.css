@@ -1,0 +1,80 @@
+.card-title {
+  height: 3rem;
+}
+
+.card-description {
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  overflow-y: scroll;
+}
+
+.card-footer {
+  text-align: center;
+}
+#search-col {
+  padding: 0;
+}
+
+#search-bar {
+  margin: 15px 0;
+  width: 20rem;
+}
+.validation-message {
+  color: #00ADB5;
+  font-size: 12px;
+}
+.button-fav {
+  background-color: #31081f !important;
+  float: right !important;
+}
+
+.fav {
+  float: right !important;
+}
+.main-navbar {
+  background-color: #222831;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-logo {
+  font-size: 2rem;
+  font-weight: 500;
+}
+html {
+  font-size: 1.3rem;
+}
+
+body {
+  background: #222831 !important;
+  color: white !important;
+}
+
+.btn-primary {
+  background: #00ADB5 !important;
+  color: white !important;
+  border: 2px solid #222831 !important;
+}
+
+.btn-link {
+  color: white !important;
+}
+
+.bg-clr-footer {
+  background-color: #00ADB5 !important;
+}
+
+.bg-clr-header {
+  background-color: #222831 !important;
+}
+
+.nav-bar {
+  color: white !important;
+}
+
+.cardText {
+  color: #393E46 !important;
+}
+
+/*# sourceMappingURL=/src.78399e21.css.map */

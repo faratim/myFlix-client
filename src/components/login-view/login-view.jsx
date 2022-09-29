@@ -1,84 +1,116 @@
-import React from 'react';
-
-
-/////////////////////////////////
-//CLASS COMPONENT
-// export class LoginView extends React.Component {
-//     constructor(props) {
-//         super(props);
-
-//         this.state = {
-//             username: '',
-//             password: ''
-//         };
-//         this.onUsernameChange = this.onUsernameChange.bind(this);
-//         this.onPasswordChange = this.onPasswordChange.bind(this);
-//         this.handleSubmit = this.handleSubmit.bind(this);
-//     }
-//     onUsernameChange(event) {
-//         this.setState({
-//             username: event.target.value
-//         });
-//     }
-//     onPasswordChange(event) {
-//         this.setState({
-//             password: event.target.value
-//         });
-//     }
-//     handleSubmit() {
-//         const { username, password } = this.state;
-//         console.log(username, password);
-//         /* Send a request to the server for authentication */
-//     /* then call this.props.onLoggedIn(username) */
-//     // this.props.onLoggedIn(username);
-//     }
-
-//     render() {
-//         return (
-//             <form>
-//                 <label>
-//                     Username:
-//                     <input type="text" value={this.state.username} onChange={this.onUsernameChange} />
-//                 </label>
-//                 <label>
-//                     Password:
-//                     <input type="password" value={this.state.password} onChange={this.onPasswordChange} />
-//                 </label>
-//                 <button type="button" onClick={this.handleSubmit}>Submit</button>
-//             </form>
-//         );
-//     }
-// }
-
-
-/////////////////////////////////
-//FUNCTIONAL COMPONENT
-
+// GLOBAL
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import axios from 'axios';
 
+// VIEW
 export function LoginView(props) {
-  const [ username, setUsername ] = useState('');
-  const [ password, setPassword ] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [usernameErr, setUsernameErr] = useState('');
+  const [passwordErr, setPasswordErr] = useState('');
+
+  // Validate Inputs
+  const validate = () => {
+    let isReq = true;
+    if (!username) {
+      setUsernameErr('Username is required!');
+      isReq = false;
+    } else if (username.length < 5) {
+      setUsernameErr(
+        'Username must be at least 5 characters!'
+      );
+      isReq = false;
+    }
+    if (!password) {
+      setPasswordErr('Password is required!');
+      isReq = false;
+    } else if (password.length < 5) {
+      setPasswordErr(
+        'Password must be at least 5 characters long!'
+      );
+      isReq = false;
+    }
+    return isReq;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
-    /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
-    props.onLoggedIn(username);
+    const isReq = validate();
+
+    if (isReq) {
+      /*Server Authentication*/
+
+      axios
+        .post('https://faraflix.herokuapp.com/login', {
+          Username: username,
+          Password: password,
+        })
+        .then((response) => {
+          // Server Response + Token🪙
+          const data = response.data;
+          props.onLoggedIn(data);
+        })
+        .catch((e) => {
+          console.error('User Does Not Exist');
+          alert('Incorrect Username/Password');
+        });
+    }
   };
 
   return (
-    <form>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-      </label>
-      <label>
-        Password:
-        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      </label>
-      <button type="submit" onClick={handleSubmit}>Submit</button>
-    </form>
+    <Form>
+      
+      {/* Username */}
+      <Form.Group as={Row}>
+        <Form.Label column sm="12" htmlFor="username">
+          Username:
+        </Form.Label>
+        <Col sm="10" md={6}>
+          <Form.Control
+            id="username"
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          {usernameErr && <p>{usernameErr}</p>}
+        </Col>
+      </Form.Group>
+      
+      {/* Password */}
+      <Form.Group as={Row} className="mb-3">
+        <Form.Label column sm="12" htmlFor="password">
+          Password:
+        </Form.Label>{' '}
+        <Col sm="10" md={6}>
+          <Form.Control
+            id="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {passwordErr && <p>{passwordErr}</p>}
+        </Col>
+      </Form.Group>
+      
+      {/* Submit Button */}
+      <Button
+        className="mr-3"
+        type="submit"
+        onClick={handleSubmit}>
+        Submit
+      </Button>
+    </Form>
   );
 }
+
+LoginView.propTypes = {
+  onLoggedIn: PropTypes.func.isRequired,
+};
