@@ -74,6 +74,6 @@ their favorite movies, adding or removing movies at any time.
 
 ### Screenshot of the app:
 
-  <img src="/myflix.jpg" alt="Alt text" style="display: inline-block; margin: 0 auto; max-width: 800px">
+  <img src="myflix.jpg" alt="Alt text" style="display: inline-block; margin: 0 auto; max-width: 800px">
 
 ---
