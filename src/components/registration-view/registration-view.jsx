@@ -100,6 +100,7 @@ export function RegistrationView(props) {
         })
         .then((response) => {
           const data = response.data;
+          alert('You have been registered! Please login.')
           window.open('/', '_self');
         })
         .catch((response) => {

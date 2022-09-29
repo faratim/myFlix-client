@@ -27,8 +27,8 @@ export function MovieView({
         <Card.Body>
           <Card.Img
             variant="top"
-            src={movieData.Imageurl}
-            alt="Moviei poster"
+            src={movieData.ImagePath}
+            alt="Movie poster"
           />
         </Card.Body>
       </Card>

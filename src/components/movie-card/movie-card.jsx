@@ -12,7 +12,7 @@ import {
 import { Link } from 'react-router-dom';
 
 // SCSS
-import './movie-card.jsx';
+import './movie-card.scss';
 
 // VIEW
 export class MovieCard extends React.Component {
@@ -36,11 +36,11 @@ export class MovieCard extends React.Component {
               />
             </Link>
             <Card.Body>
-              <Card.Title className="cardText">
+              <Card.Title className="cardText card-title">
                 {' '}
                 {movieData.Title}
               </Card.Title>
-              <Card.Text className="cardText">
+              <Card.Text className="cardText card-description">
                 {movieData.Description.length < 131 &&
                   movieData.Description}
                 {movieData.Description.length > 130 &&
@@ -50,7 +50,7 @@ export class MovieCard extends React.Component {
             </Card.Body>
             <Card.Footer className="bg-clr-footer">
               <Link to={`/movies/${movieData._id}`}>
-                <Button variant="link">Show Details</Button>
+                <Button className="details-button" variant="link">Show Details</Button>
               </Link>
             </Card.Footer>
           </Card>

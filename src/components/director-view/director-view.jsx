@@ -22,7 +22,7 @@ export function DirectorView({ onBackClick, director, directorMovies }) {
         Back
       </Button>
       <br />
-      <h5>{director.Name} also directed: </h5>
+      <h5>Movies Directed by {director.Name}</h5>
       <Row className="justify-content mt-3 director-cardView">
         {directorMovies.map((movie) => (
           <MovieCard key={movie._id} movieData={movie}></MovieCard>

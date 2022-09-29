@@ -2,6 +2,9 @@
 import React from 'react';
 import { Container, Navbar, Nav } from 'react-bootstrap';
 
+// SCSS
+import './navbar.scss';
+
 // NAVBAR
 export function NavBar({ user }) {
   const onLoggedOut = () => {
@@ -13,9 +16,9 @@ export function NavBar({ user }) {
     return userToken ? userToken : false;
   };
   return (
-    <Navbar variant="dark">
+    <Navbar className="main-navbar navbar-fixed-top" variant="dark">
       <Navbar.Brand className="navbar-logo" href="/">
-        my Flix App
+        myFlix
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

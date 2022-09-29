@@ -29,7 +29,7 @@ export function FavoriteView({ movieData, handleFav }) {
             <Card.Img
               className="poster position-relative"
               variant="top"
-              src={movieData.Imageurl}
+              src={movieData.ImagePath}
             />
             <Card.Body>
               <Card.Title className="cardText">

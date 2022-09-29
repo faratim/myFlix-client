@@ -1,3 +1,24 @@
+.card-title {
+  height: 3rem;
+}
+
+.card-description {
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  overflow-y: scroll;
+}
+
+.card-footer {
+  text-align: center;
+}
+#search-col {
+  padding: 0;
+}
+
+#search-bar {
+  margin: 15px 0;
+  width: 20rem;
+}
 .validation-message {
   color: #00ADB5;
   font-size: 12px;
@@ -9,6 +30,12 @@
 
 .fav {
   float: right !important;
+}
+.main-navbar {
+  background-color: #222831;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 html {
   font-size: 1.3rem;

@@ -4,20 +4,17 @@ import { Row, Col } from 'react-bootstrap';
 import { Form } from 'react-bootstrap';
 import { setFilter } from '../../actions/actions';
 
+import './visibility-filter-input.scss'
+
 function VisibilityFilterInput(props) {
   return (
     <Row>
-      <Col xs={2}>
-        <Form.Label className="mt-1" htmlFor="search-bar">
-          SEARCH:
-        </Form.Label>
-      </Col>
-      <Col>
+      <Col id="search-col">
         <Form.Control
           id="search-bar"
           onChange={(e) => props.setFilter(e.target.value)}
           value={props.visibilityFilter}
-          placeholder="Type to filter the database"
+          placeholder="Search Movies"
         />
       </Col>
     </Row>
