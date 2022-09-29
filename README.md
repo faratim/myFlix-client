@@ -1,10 +1,35 @@
-# 🎬 MyFlixDB
+# 🎬 MyFlixDB 🎬
 
 ## Overview
 
 Client-side of MyFlixDB, a movie database app which fetches data from it's server-side
 (a mongoDB database with custom built API). Users register, login, update personal info, and search for and save information about movies, directors, and genres. They can also create a list of
 their favorite movies, adding or removing movies at any time.
+
+## Technical Features:
+
+- Single-page application (SPA) built with React
+- JWT Token Authentication prior to accessing features
+- Accesses mongoDB using custom API
+- React Redux is written using the React library and React Redux
+- React Bootstrap as a UI library for styling and responsiveness
+- State routing to navigate between views and share URLs
+- Mix of class components and function components
+- Users can filter movies
+- Parcel for build tool
+
+
+## Technologies:
+
+- React
+- Redux
+- Node.js
+- MongoDB
+- Axios
+- Express
+- JWT Authentication
+- React-Bootstrap
+- HTML, CSS, JavaScript
 
 ## Views
 ### Login view
@@ -44,29 +69,8 @@ their favorite movies, adding or removing movies at any time.
 - Displays user's favorite movies
 - Allows users to remove a movie from their list of favorites
 
-## Technical Features:
 
-- Single-page application (SPA) built with React
-- JWT Token Authentication prior to accessing features
-- Accesses mongoDB using custom API
-- React Redux is written using the React library and React Redux
-- React Bootstrap as a UI library for styling and responsiveness
-- State routing to navigate between views and share URLs
-- Mix of class components and function components
-- Users can filter movies
-- Parcel for build tool
 
-## Dependencies:
-
-- React
-- React-bootstrap
-- React-dom
-- React-redux
-- React-router-dom
-- Redux
-- Axios
-- Prop-types
-- Redux-devtools-extension
 
 ### Screenshot of the app:
 
