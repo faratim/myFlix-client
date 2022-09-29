@@ -31,7 +31,7 @@ export class MovieCard extends React.Component {
               <Card.Img
                 className="poster"
                 variant="top"
-                src={movieData.Imageurl}
+                src={movieData.ImagePath}
                 alt="Poster from the movie"
               />
             </Link>

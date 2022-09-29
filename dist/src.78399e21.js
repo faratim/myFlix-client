@@ -63635,7 +63635,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Img, {
         className: "poster",
         variant: "top",
-        src: movieData.Imageurl,
+        src: movieData.ImagePath,
         alt: "Poster from the movie"
       })), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Title, {
         className: "cardText"
@@ -65606,7 +65606,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62881" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56658" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
