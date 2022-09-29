@@ -16,19 +16,19 @@ export function NavBar({ user }) {
     return userToken ? userToken : false;
   };
   return (
-    <Navbar className="main-navbar navbar-fixed-top" variant="dark">
+    <Navbar collapseOnSelect expand="lg" className="main-navbar navbar-fixed-top" variant="dark">
       <Navbar.Brand className="navbar-logo" href="/">
         myFlix
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="nav-bar">
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="mr-auto">
           {getToken() && (
             <Nav.Link href="/">Movies</Nav.Link>
           )}
           {getToken() && (
             <Nav.Link href={`/users/${user}`}>
-              {user}
+              Account
             </Nav.Link>
           )}
           {!getToken() && (

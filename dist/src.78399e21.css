@@ -37,6 +37,11 @@
   top: 0;
   z-index: 1000;
 }
+
+.navbar-logo {
+  font-size: 2rem;
+  font-weight: 500;
+}
 html {
   font-size: 1.3rem;
 }

@@ -64395,22 +64395,24 @@ function NavBar(_ref) {
   };
 
   return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar, {
+    collapseOnSelect: true,
+    expand: "lg",
     className: "main-navbar navbar-fixed-top",
     variant: "dark"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar.Brand, {
     className: "navbar-logo",
     href: "/"
   }, "myFlix"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar.Toggle, {
-    "aria-controls": "basic-navbar-nav"
+    "aria-controls": "responsive-navbar-nav"
   }), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar.Collapse, {
-    id: "basic-navbar-nav"
+    id: "responsive-navbar-nav"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav, {
-    className: "nav-bar"
+    className: "mr-auto"
   }, getToken() && /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
     href: "/"
   }, "Movies"), getToken() && /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
     href: "/users/".concat(user)
-  }, user), !getToken() && /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
+  }, "Account"), !getToken() && /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
     href: "/register"
   }, "Sign up"), !getToken() && /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
     href: "/"
