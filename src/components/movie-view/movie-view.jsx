@@ -1,54 +1,107 @@
+// GLOBAL
 import React from 'react';
+import PropTypes from 'prop-types';
+import {
+  Card,
+  Button,
+  CardGroup,
+} from 'react-bootstrap';
 
-export class MovieView extends React.Component {
+// LOCAL
+import { Link } from 'react-router-dom';
 
-  keypressCallback(event) {
-    console.log(event.key);
-  }
+// SCSS
+import './movie-view.scss';
 
-  componentDidMount() {
-    document.addEventListener('keypress', this.keypressCallback);
-    };
+// VIEW
+export function MovieView({
+  movieData,
+  onBackClick,
+  handleFav,
+  isFavorite,
+}) {
+  return (
+    <CardGroup className="mb-3">
+      {' '}
+      <Card className="movie-poster">
+        <Card.Body>
+          <Card.Img
+            variant="top"
+            src={movieData.ImagePath}
+            alt="Movie poster"
+          />
+        </Card.Body>
+      </Card>
+      <Card className="movie-info">
+        <Card.Body>
+          <Card.Title className="cardText mb-4">
+            {' '}
+            {movieData.Title}{' '}
+            {!isFavorite ? (
+              <Button
+                className="button-fav"
+                onClick={() =>
+                  handleFav(movieData._id, 'add')
+                }>
+                ⭐️
+              </Button>
+            ) : (
+              <div className="fav">⭐️</div>
+            )}
+          </Card.Title>
 
-  componentWillUnmount() {
-    document.removeEventListener('keypress', this.keypressCallback);
-  }
-
-  render() {
-    const { movie, onBackClick } = this.props;
-
-    return (
-      <div className="movie-view">
-        <div className="movie-poster">
-          <img crossOrigin="anonymous" src={movie.ImagePath} />
-        </div>
-        <div className="movie-title">
-          <span className="label">Title: </span>
-          <span className="value">{movie.Title}</span>
-        </div>
-        <div className="movie-description">
-          <span className="label">Description: </span>
-          <span className="value">{movie.Description}</span>
-        </div>
-        <div className="movie-director">
-          <span className="label">Director: </span>
-          <span className="value">{movie.Director.Name}</span>
-        </div>
-        <div className="movie-genre">
-          <span className="label">Genre: </span>
-          <span className="value">{movie.Genre.Name}</span>
-        </div>
-        <div className="movie-year">
-          <span className="label">Release Year: </span>
-          <span className="value">{movie.ReleaseYear}</span>
-        </div>
-        <div className="movie-actors">
-          <span className="label">Actors: </span>
-          <span className="value">{movie.Actors}</span>
-        </div>
-        <button onClick={() => { onBackClick(null); }}>Back</button>
-
-      </div>
-    );
-  }
+          <Card.Text className="cardText">
+            {' '}
+            {movieData.Description}
+          </Card.Text>
+          <Card.Text className="cardText">
+            {' '}
+            Actors: {movieData.Actors.join(', ')}
+          </Card.Text>
+          <Card.Text className="cardText">
+            {' '}
+            Director:{' '}
+            <Link
+              to={`/directors/${movieData.Director.Name}`}>
+              {movieData.Director?.Name}
+            </Link>
+          </Card.Text>
+          <Card.Text className="cardText">
+            {' '}
+            Genre:{' '}
+            <Link to={`/genres/${movieData.Genre.Name}`}>
+              {movieData.Genre?.Name}
+            </Link>
+          </Card.Text>
+          <Button
+            className="fav"
+            onClick={() => {
+              onBackClick();
+            }}>
+            Back
+          </Button>
+        </Card.Body>
+      </Card>
+    </CardGroup>
+  );
 }
+MovieView.propTypes = {
+  movieData: PropTypes.shape({
+    Title: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    Imageurl: PropTypes.string.isRequired,
+    Genre: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired,
+    }),
+    Director: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Bio: PropTypes.string.isRequired,
+      Birthyear: PropTypes.string,
+      // Deathyear: PropTypes.string,
+      Movies: PropTypes.array,
+    }),
+    Actors: PropTypes.array,
+    Featured: PropTypes.bool,
+  }).isRequired,
+};
