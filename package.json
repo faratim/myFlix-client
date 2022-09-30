@@ -5,7 +5,7 @@
   "source": "src/index.html",
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "parcel build src/index.html --no-scope-hoist"
+    "build": "webpack"
   },
   "author": "Tim Fara",
   "license": "ISC",
@@ -23,7 +23,9 @@
   "devDependencies": {
     "@parcel/transformer-sass": "^2.7.0",
     "buffer": "^6.0.3",
+    "cssnano": "^5.1.13",
     "parcel": "^2.7.0",
+    "postcss": "^8.4.16",
     "process": "^0.11.10",
     "sass": "^1.55.0"
   }
