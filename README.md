@@ -1,7 +1,5 @@
 # 🎬 MyFlixDB 🎬
 
-![Server-Side Repo](https://img.shields.io/badge/-Server-Side_Repo-1ca0f1?style=plastic&labelColor=black&logo=github&logoColor=white&link=https://github.com/faratim/movie_api.git) 
-
 <a href="https://github.com/faratim/movie_api.git" target="_blank"><img src="https://img.shields.io/badge/-SERVERSIDE REPO-blue?style=for-the-badge&logo=github&logoColor=white&color=ff69b4&link=https://www.linkedin.com/in/timothy-fara/" /></a>
 ## Overview
 
